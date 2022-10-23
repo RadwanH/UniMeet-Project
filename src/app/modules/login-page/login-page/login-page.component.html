@@ -1,1 +1,64 @@
-<p>login-page works!</p>
+<div class="login-page">
+  <div class="container">
+    <div class="login-card">
+      <form>
+        <div class="dx-fieldset">
+          <div class="dx-field">
+            <div class="dx-field-label" style="width: 20%; color: white;">Email:</div>
+            <div class="dx-field-value" style="width: 80%;">
+              <dx-text-box mode="email" label="Email" labelMode="floating">
+                <dx-validator>
+                  <dxi-validation-rule
+                    type="required"
+                    message="Email is required"
+                  >
+                  </dxi-validation-rule>
+                  <dxi-validation-rule
+                    type="email"
+                    message="Email is invalid"
+                  ></dxi-validation-rule>
+                  <dxi-validation-rule
+                    type="pattern"
+                    [pattern]="emailPattern"
+                    message="Email must be in the form of a school email"
+                  ></dxi-validation-rule>
+                </dx-validator>
+              </dx-text-box>
+            </div>
+          </div>
+          <div class="dx-field">
+            <div class="dx-field-label" style="width: 20%; color: white;">Password:</div>
+            <div class="dx-field-value" style="width: 80%">
+              <dx-text-box mode="password" label="Password" labelMode="floating">
+                <dx-validator>
+                  <dxi-validation-rule
+                    type="required"
+                    message="Password is required"
+                  >
+                  </dxi-validation-rule>
+                </dx-validator>
+              </dx-text-box>
+            </div>
+          </div>
+        </div>
+        <div class="dx-fieldset">
+          <dx-button
+            id="button"
+            text="Login"
+            type="success"
+            [useSubmitBehavior]="true"
+            style="display: block;"
+            (onClick)="login()"
+          >
+          </dx-button>
+        </div>
+      </form>
+      <div class="">
+				<div class="d-flex justify-content-center" style="color: aqua;">
+					<p> Don't have an account? &nbsp;</p>
+          <a routerLink="mainPage">Sign Up</a>
+				</div>
+			</div>
+    </div>
+  </div>
+</div>
