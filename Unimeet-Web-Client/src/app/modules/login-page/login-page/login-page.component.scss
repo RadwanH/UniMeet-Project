@@ -5,11 +5,37 @@
   background-image: url("http://getwallpapers.com/wallpaper/full/a/5/d/544750.jpg");
   background-size: cover;
   .login-card{
-    margin-left: 20em;
-    margin-top: 15em;
     position: absolute;
-    height: 35% !important;
+    margin-top: 10rem;
+    height: 50% !important;
     width: 30% !important;
     background-color: rgba(0,0,0,0.5) !important;
+    .unimeet-logo {
+      display: block;
+      margin: 0 auto;
+      width: 40%;
+      margin-top: 2rem;
+    }
+  }
+}
+@media screen and (max-width: 600px) {
+  .login-card {
+    min-width: 90%;
+    .dx-field-label{
+      visibility: hidden;
+    }
+  }
+}
+@media screen and (max-width: 900px) {
+  .login-card {
+    min-width: 60%;
+    .dx-field-label{
+      visibility: hidden;
+    }
+  }
+}
+@media screen and (max-width: 1300px) {
+  .login-card {
+    min-width: 40%;
   }
 }

@@ -15,4 +15,7 @@ export class LoginPageComponent implements OnInit {
   login(): void {
 		this.router.navigateByUrl("/mainPage");
 	}
+  signUp(){
+    this.router.navigateByUrl("/sign-up");
+  }
 }
