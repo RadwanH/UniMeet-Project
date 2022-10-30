@@ -27,3 +27,8 @@
     min-width: 60%;
   }
 }
+@media screen and (max-width: 1300px) {
+  .signup-card {
+    min-width: 0%;
+  }
+}
