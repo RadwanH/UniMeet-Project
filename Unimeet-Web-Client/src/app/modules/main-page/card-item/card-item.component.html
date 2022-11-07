@@ -1,0 +1,65 @@
+<div class="card" style="width: 30rem" [id]="'post'+ post.postId">
+  <img
+    class="card-img-top post-image"
+    [src]="post.image"
+    alt="Card image cap"
+  />
+  <div class="card-body">
+    <p class="card-text">
+      {{ post.content }}
+    </p>
+    <div style="margin-bottom: 0.5rem">
+      <span
+        style="cursor: pointer"
+        (click)="likeButtonClick()"
+        [ngClass]="{
+          'clicked-like': isLikeClicked,
+          'base-like': !isLikeClicked
+        }"
+        ><fa-icon class="fa-2x" [icon]="faHeart"></fa-icon
+      ></span>
+      <span style="cursor: pointer; margin-left: 1rem"
+        ><fa-icon class="fa-2x" [icon]="faComment"></fa-icon
+      ></span>
+    </div>
+    <h6 class="card-title" style="cursor: pointer">
+      {{ post.numberOfLikes }} beğenme
+    </h6>
+    <p>
+      <b style="cursor: pointer" class="commentUserName">{{
+        post.comments[0].username
+      }}</b>
+      {{ post.comments[0].content }}
+    </p>
+    <p style="opacity: 0.6; cursor: pointer" (mouseenter)="showAllComments(post.postId)" (onclick)="showAllCommentsClick()">
+      {{ post.numberOfComments }} yorumun tümünü gör
+    </p>
+  </div>
+</div>
+<dx-popup
+  [showTitle]="true"
+  title="Information"
+  [dragEnabled]="false"
+  [hideOnOutsideClick]="true"
+  [showCloseButton]="false"
+  container=".dx-viewport"
+  [(visible)]="showCommandPopup"
+>
+  <dxo-position at="bottom" my="center" [of]="positionOf"> </dxo-position>
+  <div *dxTemplate="let data of 'content'">
+    <p>
+      Full Name:
+      <span
+        >dsjkjdssd</span
+      >
+    </p>
+    <p>
+      Birth Date:
+      <span>dsdssjds</span>
+    </p>
+    <p>
+      Address:
+      <span>dsjhdsjkd</span>
+    </p>
+  </div>
+</dx-popup>
