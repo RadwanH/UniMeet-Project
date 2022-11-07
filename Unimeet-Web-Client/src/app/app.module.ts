@@ -1,18 +1,22 @@
+import { MainPageModule } from './modules/main-page/main-page.module';
 import { LoginPageModule } from './modules/login-page/login-page.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    LoginPageModule
+    LoginPageModule,
+    MainPageModule,
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
