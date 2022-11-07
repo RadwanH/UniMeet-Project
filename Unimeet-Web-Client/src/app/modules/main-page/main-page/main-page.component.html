@@ -1,1 +1,22 @@
-<p>main-page works!</p>
+<div class="container" id="con">
+  <div class="row">
+    <div class="col-md-3">
+      <h1>Start</h1>
+    </div>
+    <div class="col-md-6">
+      <div class="d-flex justify-content-center">
+        <ul>
+          <li *ngFor="let post of posts; index as i" class="card-list-item">
+              <app-card-item
+                [post]="post"
+                (onCommandButtonClick)="onCommandButtonClick()"
+                [showCommandPopup]="commandPopupVisible"
+              ></app-card-item>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-md-3">
+    </div>
+  </div>
+</div>
