@@ -11,11 +11,10 @@ export class CardItemComponent implements OnInit {
   faHeart = faHeart;
   faComment = faComment;
   isLikeClicked: boolean = false;
-  popupVisible: boolean = true;
-  positionOf: string = '';
   @Input() post:any;
-  @Input() showCommandPopup: any;
-  @Output() onCommandButtonClick = new EventEmitter
+  @Output() onCommandButtonClick = new EventEmitter();
+  @Output() positionOf = new EventEmitter();
+  @Output() postInfo = new EventEmitter();
   constructor() {}
 
   ngOnInit(): void {}
@@ -24,9 +23,10 @@ export class CardItemComponent implements OnInit {
     this.isLikeClicked = !this.isLikeClicked;
   }
   showAllComments(id: any){
-    this.positionOf = `#post${id}`;
+    this.positionOf.emit(`#post${id}`);
   }
-  showAllCommentsClick(){
+  showAllCommentsClick(post:any){
     this.onCommandButtonClick.emit();
+    this.postInfo.emit(post);
   }
 }

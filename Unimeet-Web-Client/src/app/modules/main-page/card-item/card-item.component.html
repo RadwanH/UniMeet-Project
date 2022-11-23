@@ -31,35 +31,8 @@
       }}</b>
       {{ post.comments[0].content }}
     </p>
-    <p style="opacity: 0.6; cursor: pointer" (mouseenter)="showAllComments(post.postId)" (onclick)="showAllCommentsClick()">
+    <p style="opacity: 0.6; cursor: pointer" (mouseenter)="showAllComments(post.postId)" (click)="showAllCommentsClick(post)">
       {{ post.numberOfComments }} yorumun tümünü gör
     </p>
   </div>
 </div>
-<dx-popup
-  [showTitle]="true"
-  title="Information"
-  [dragEnabled]="false"
-  [hideOnOutsideClick]="true"
-  [showCloseButton]="false"
-  container=".dx-viewport"
-  [(visible)]="showCommandPopup"
->
-  <dxo-position at="bottom" my="center" [of]="positionOf"> </dxo-position>
-  <div *dxTemplate="let data of 'content'">
-    <p>
-      Full Name:
-      <span
-        >dsjkjdssd</span
-      >
-    </p>
-    <p>
-      Birth Date:
-      <span>dsdssjds</span>
-    </p>
-    <p>
-      Address:
-      <span>dsjhdsjkd</span>
-    </p>
-  </div>
-</dx-popup>
