@@ -1,6 +1,45 @@
+.sliding-logos {
+  height: 100px;
+  margin-bottom: 25px;
+  position: relative;
+  overflow: hidden;
+
+  .sliding-banner {
+      background-color: #fff;
+      padding: 30px 0px;
+      position: absolute;
+      white-space: nowrap;
+      animation: bannermove 15s linear infinite;
+      -webkit-animation: bannermove 15s linear infinite;
+
+      img {
+          margin: 0 80px;
+          max-width: 150px;
+          max-height: 45px;
+
+      }
+  }
+
+  @keyframes bannermove {
+      0% {
+          transform: translate(0, 0);
+      }
+
+      100% {
+          transform: translate(-50%, 0);
+          -webkit-transform: translate(-50%, 0);
+          -moz-transform: translate(-50%, 0);
+          -ms-transform: translate(-50%, 0);
+          -o-transform: translate(-50%, 0);
+      }
+  }
+}
 li {
   list-style: none;
 }
 .card-list-item {
   margin-bottom: 2rem;
+}
+.first-card-item{
+  margin-top: 10rem;
 }

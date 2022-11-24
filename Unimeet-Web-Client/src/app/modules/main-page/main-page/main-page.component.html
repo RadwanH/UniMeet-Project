@@ -6,17 +6,63 @@
     <div class="col-md-6">
       <div class="d-flex justify-content-center">
         <ul>
-          <li *ngFor="let post of posts; index as i" class="card-list-item">
-              <app-card-item
-                [post]="post"
-                (onCommandButtonClick)="onCommandButtonClick()"
-                [showCommandPopup]="commandPopupVisible"
-              ></app-card-item>
+          <li
+            *ngFor="let post of posts; index as i; let first = first"
+            class="card-list-item" [ngClass]="{ 'first-card-item': first }"
+          >
+            <app-card-item
+              [post]="post"
+              (onCommandButtonClick)="onCommandButtonClick()"
+              (positionOf)="onPositionOfClick($event)"
+              (postInfo)="onPostInfo($event)"
+            ></app-card-item>
           </li>
         </ul>
       </div>
     </div>
-    <div class="col-md-3">
-    </div>
+    <div class="col-md-3"></div>
   </div>
 </div>
+<div class="sliding-logos">
+  <div class="sliding-banner">
+      <img
+          src="https://images.ctfassets.net/exg8oyvb0wfw/3gi22a7c2AxhcGWb0mgHZb/01e9d9c91379adeaa822d9c6ebe33bbb/Uber_logo_2018.png?&q=85" />
+      <img
+          src="https://images.ctfassets.net/exg8oyvb0wfw/3Qh7xBfQmiPRKmNqbMva5D/0033e5e409adaa7bf4ba07b01b4ca851/CocaCola.png?&q=85" />
+      <img
+          src="https://images.ctfassets.net/exg8oyvb0wfw/3z5oGbAzg4eqtDbuYqZPqI/b9a0d53a6156bbb88ab8bbdbc85edc9e/Spotify_Logo_RGB_Green-2.svg?&q=85" />
+      <img
+          src="https://images.ctfassets.net/exg8oyvb0wfw/3wEB5kxx2GHSuqhYfKdJrb/f297eb11d549d7a91a4a42a72d0f60fb/Logo___snapchat.svg?&q=85" />
+      <img
+          src="https://images.ctfassets.net/exg8oyvb0wfw/5eiBLbNJ075QgNiUbT63Jb/5d4776c2a590b06d897d0177640d8d1c/JetBlue_Airways_Logo.svg?&q=85" />
+      <img
+          src="https://images.ctfassets.net/exg8oyvb0wfw/1e0UGR4EiXeJFdbpz9ekTR/248c4a33f62aed99cb8d80f1525414d0/apple.png?&q=85" />
+      <img
+          src="https://images.ctfassets.net/exg8oyvb0wfw/uTAvhTR5CqiD0fRpevKAk/ce6d019402218c3ddbc969be6295d677/airbnb_horizontal_lockup_web.png?&q=85">
+      <img
+          src="https://images.ctfassets.net/exg8oyvb0wfw/1MDJMwI32yAUbbjS4PqPu9/31ccecfbf83005ac58fc88dc79028e12/twitter.png?&q=85">
+      <img
+          src="https://images.ctfassets.net/exg8oyvb0wfw/3gi22a7c2AxhcGWb0mgHZb/01e9d9c91379adeaa822d9c6ebe33bbb/Uber_logo_2018.png?&q=85" />
+      <img
+          src="https://images.ctfassets.net/exg8oyvb0wfw/3Qh7xBfQmiPRKmNqbMva5D/0033e5e409adaa7bf4ba07b01b4ca851/CocaCola.png?&q=85" />
+      <img
+          src="https://images.ctfassets.net/exg8oyvb0wfw/3z5oGbAzg4eqtDbuYqZPqI/b9a0d53a6156bbb88ab8bbdbc85edc9e/Spotify_Logo_RGB_Green-2.svg?&q=85" />
+      <img
+          src="https://images.ctfassets.net/exg8oyvb0wfw/3wEB5kxx2GHSuqhYfKdJrb/f297eb11d549d7a91a4a42a72d0f60fb/Logo___snapchat.svg?&q=85" />
+      <img
+          src="https://images.ctfassets.net/exg8oyvb0wfw/5eiBLbNJ075QgNiUbT63Jb/5d4776c2a590b06d897d0177640d8d1c/JetBlue_Airways_Logo.svg?&q=85" />
+      <img
+          src="https://images.ctfassets.net/exg8oyvb0wfw/1e0UGR4EiXeJFdbpz9ekTR/248c4a33f62aed99cb8d80f1525414d0/apple.png?&q=85" />
+      <img
+          src="https://images.ctfassets.net/exg8oyvb0wfw/uTAvhTR5CqiD0fRpevKAk/ce6d019402218c3ddbc969be6295d677/airbnb_horizontal_lockup_web.png?&q=85">
+      <img
+          src="https://images.ctfassets.net/exg8oyvb0wfw/1MDJMwI32yAUbbjS4PqPu9/31ccecfbf83005ac58fc88dc79028e12/twitter.png?&q=85">
+  </div>
+</div>
+<app-show-comments-popup
+  [positionOf]="positionOf"
+  [showCommentPopup]="commandPopupVisible"
+  (popupHidden)="onPopupHidden()"
+  [postInfo]="postInfo"
+>
+</app-show-comments-popup>
