@@ -1,0 +1,43 @@
+<div class="container" id="con">
+  <div class="row">
+    <div class="col-md-3">
+      <h1>Start</h1>
+    </div>
+    <div class="col-md-6">
+      <div class="d-flex justify-content-center">
+        <div class="profile-photo-div">
+          <img
+            class="circle-img"
+            src="https://www.w3schools.com/howto/img_avatar.png"
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3"></div>
+        <div  class="col-md-6" style="margin-top: 2rem; margin-bottom: 2rem;">
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Architecto,
+          ut, ipsa, perferendis vel quo nemo in eius aliquam placeat iste
+          tempore voluptas? Obcaecati, distinctio! Nemo quos esse veritatis
+          vitae ratione.
+        </div>
+        <div class="col-md-3"></div>
+      </div>
+    </div>
+    <div class="col-md-3"></div>
+  </div>
+  <div>
+    <ul>
+      <div class="row">
+        <li class="col-md-4" *ngFor="let post of posts; index as i">
+          <div class="card-list-item">
+            <app-card-item
+              [post]="post"
+              (onCommandButtonClick)="onCommandButtonClick()"
+              (postInfo)="onPostInfo($event)"
+            ></app-card-item>
+          </div>
+        </li>
+      </div>
+    </ul>
+  </div>
+</div>

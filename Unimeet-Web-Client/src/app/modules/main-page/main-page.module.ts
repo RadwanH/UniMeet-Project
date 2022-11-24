@@ -5,13 +5,15 @@ import { MainPageComponent } from './main-page/main-page.component';
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { CardItemComponent } from './card-item/card-item.component';
 import { ShowCommentsPopupComponent } from './show-comments-popup/show-comments-popup.component';
+import { ProfilePageComponent } from './profile-page/profile-page.component';
 
 
 @NgModule({
   declarations: [
     MainPageComponent,
     CardItemComponent,
-    ShowCommentsPopupComponent
+    ShowCommentsPopupComponent,
+    ProfilePageComponent
   ],
   imports: [
     CommonModule,

@@ -1,3 +1,4 @@
+import { ProfilePageComponent } from './modules/main-page/profile-page/profile-page.component';
 import { SignUpComponent } from './modules/login-page/sign-up/sign-up.component';
 import { MainPageComponent } from './modules/main-page/main-page/main-page.component';
 import { LoginPageComponent } from './modules/login-page/login-page/login-page.component';
@@ -8,7 +9,8 @@ const routes: Routes = [
   { path: "", redirectTo: "mainPage", pathMatch: "full" },
   { path: 'login', component: LoginPageComponent },
   { path: 'mainPage', component: MainPageComponent },
-  { path: 'sign-up', component: SignUpComponent}
+  { path: 'sign-up', component: SignUpComponent},
+  { path: 'profile-page', component: ProfilePageComponent}
 ];
 
 @NgModule({
