@@ -7,7 +7,7 @@ export class PostService {
   posts: any[] = [
     {
       postId: 1,
-      image: 'https://fakeimg.pl/440x320/282828/eae0d0/?retina=1',
+      image: 'https://fakeimg.pl/600x600/282828/eae0d0/?retina=1',
       user: {
         userId: 1,
         name: 'name1',
@@ -93,7 +93,7 @@ export class PostService {
     },
     {
       postId: 2,
-      image: 'https://fakeimg.pl/200x100/282828/eae0d0/?retina=1',
+      image: 'https://fakeimg.pl/400x400/282828/eae0d0/?retina=1',
       user: {
         userId: 2,
         name: 'name2',

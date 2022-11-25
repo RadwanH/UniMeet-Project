@@ -1,3 +1,4 @@
+import { post } from './../../../models/post';
 import { Component, OnInit } from '@angular/core';
 import { PostService } from '../post.service';
 
@@ -7,20 +8,19 @@ import { PostService } from '../post.service';
   styleUrls: ['./profile-page.component.scss'],
 })
 export class ProfilePageComponent implements OnInit {
-  commandPopupVisible: boolean = false;
+  postPopupVisible: boolean = false;
   postInfo: any;
 
   constructor(private postService: PostService) {}
 
   ngOnInit(): void {}
   posts = this.postService.getPosts();
-  onCommandButtonClick() {
-    this.commandPopupVisible = true;
-  }
+
   onPopupHidden() {
-    this.commandPopupVisible = false;
+    this.postPopupVisible = false;
   }
-  onPostInfo(postInfo: any) {
-    this.postInfo = postInfo;
+  onClickProfile(post: any) {
+    this.postInfo = post;
+    this.postPopupVisible = true;
   }
 }
