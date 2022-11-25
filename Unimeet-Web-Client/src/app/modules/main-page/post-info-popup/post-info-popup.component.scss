@@ -1,0 +1,19 @@
+.clicked-like{
+  color: deeppink;
+}
+.base-like{
+  color: grey;
+}
+.comment-div {
+  background-color: rgb(242, 240, 240);
+  margin-bottom: 1rem;
+  height: 5rem;
+  .comment-p {
+    padding-top: 0.5rem;
+    .comment-username {
+      cursor: pointer;
+      font-size: large;
+      margin-left: 2rem;
+    }
+  }
+}
