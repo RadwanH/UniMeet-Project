@@ -7,6 +7,8 @@ import { CardItemComponent } from './card-item/card-item.component';
 import { ShowCommentsPopupComponent } from './show-comments-popup/show-comments-popup.component';
 import { ProfilePageComponent } from './profile-page/profile-page.component';
 import { PostInfoPopupComponent } from './post-info-popup/post-info-popup.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
+import { PostAdditionComponent } from './post-addition/post-addition.component';
 
 
 @NgModule({
@@ -15,7 +17,9 @@ import { PostInfoPopupComponent } from './post-info-popup/post-info-popup.compon
     CardItemComponent,
     ShowCommentsPopupComponent,
     ProfilePageComponent,
-    PostInfoPopupComponent
+    PostInfoPopupComponent,
+    SidebarComponent,
+    PostAdditionComponent
   ],
   imports: [
     CommonModule,
