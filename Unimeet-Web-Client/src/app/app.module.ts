@@ -11,6 +11,7 @@ import { DxButtonModule } from 'devextreme-angular';
 @NgModule({
   declarations: [
     AppComponent,
+
   ],
   imports: [
     BrowserModule,

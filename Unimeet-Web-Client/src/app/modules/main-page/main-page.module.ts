@@ -1,4 +1,4 @@
-import { DxButtonModule, DxPopupModule, DxScrollViewModule } from 'devextreme-angular';
+import { DxButtonModule, DxFileUploaderModule, DxPopupModule, DxProgressBarModule, DxScrollViewModule, DxTextAreaModule } from 'devextreme-angular';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MainPageComponent } from './main-page/main-page.component';
@@ -9,6 +9,7 @@ import { ProfilePageComponent } from './profile-page/profile-page.component';
 import { PostInfoPopupComponent } from './post-info-popup/post-info-popup.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { PostAdditionComponent } from './post-addition/post-addition.component';
+import { BrowserModule } from '@angular/platform-browser';
 
 
 @NgModule({
@@ -26,7 +27,12 @@ import { PostAdditionComponent } from './post-addition/post-addition.component';
     DxButtonModule,
     FontAwesomeModule,
     DxPopupModule,
-    DxScrollViewModule
+    DxScrollViewModule,
+    DxFileUploaderModule,
+    BrowserModule,
+    DxProgressBarModule,
+    DxTextAreaModule
+
   ]
 })
 export class MainPageModule { }

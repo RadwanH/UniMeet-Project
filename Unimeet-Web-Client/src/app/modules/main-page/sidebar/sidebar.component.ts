@@ -15,6 +15,7 @@ export class SidebarComponent implements OnInit {
  faSearch = faSearch;
  faMessage = faMessage;
  faPlus = faPlus;
+ addPostPopupVisible: boolean = false;
 
   constructor(private router: Router ) { }
 
@@ -27,8 +28,12 @@ export class SidebarComponent implements OnInit {
   onProfileClick() {
     this.router.navigate(['/profile-page'])
   }
-  createPost(){
- console.log("created new post")
+
+  createPost() {
+    this.addPostPopupVisible = true;
+  }
+  onPopupHidden() {
+    this.addPostPopupVisible = false;
   }
 
 }
