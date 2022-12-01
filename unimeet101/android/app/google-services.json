@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "652449277539",
+    "project_id": "unimeet101",
+    "storage_bucket": "unimeet101.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:652449277539:android:a6c418171d011b87b53a56",
+        "android_client_info": {
+          "package_name": "com.example.unimeet101"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "652449277539-920gv9ms4vajmfcq1480n53cm0g2gi0v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD9-b2RuCtDJbykalHGzFlXbpsOEtyi_4o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "652449277539-920gv9ms4vajmfcq1480n53cm0g2gi0v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
