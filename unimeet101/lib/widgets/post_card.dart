@@ -9,6 +9,7 @@ import 'package:unimeet101/providers/user_provider.dart';
 import 'package:unimeet101/resources/firestore_methods.dart';
 import 'package:unimeet101/screens/comments_screen.dart';
 import 'package:unimeet101/utils/colors.dart';
+import 'package:unimeet101/utils/global_variables.dart';
 import 'package:unimeet101/utils/utils.dart';
 import 'package:unimeet101/widgets/like_animation.dart';
 
@@ -60,9 +61,16 @@ class _PostCardState extends State<PostCard> {
         color: Colors.white,
       ));
     }
+    final width = MediaQuery.of(context).size.width;
 
     return Container(
-      color: mobileBackgroundColor,
+      decoration: BoxDecoration(
+        border: Border.all(
+          color: width > webScreenSize
+              ? secondaryColor.shade900
+              : mobileBackgroundColor,
+        ),
+      ),
       padding: const EdgeInsets.symmetric(
         vertical: 10,
       ),
