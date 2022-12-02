@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:unimeet101/resources/auth_methods.dart';
 import 'package:unimeet101/screens/login_screen.dart';
+import 'package:unimeet101/utils/global_variables.dart';
 import 'package:unimeet101/utils/utils.dart';
 
 import '../responsive/mobile_screen_layout.dart';
@@ -94,7 +95,10 @@ class _SignupScreenState extends State<SignupScreen> {
     return Scaffold(
       body: SafeArea(
         child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 32),
+          padding: MediaQuery.of(context).size.width > webScreenSize
+              ? EdgeInsets.symmetric(
+                  horizontal: MediaQuery.of(context).size.width / 3)
+              : const EdgeInsets.symmetric(horizontal: 32),
           width: double.infinity,
           child: SingleChildScrollView(
             child: Padding(
