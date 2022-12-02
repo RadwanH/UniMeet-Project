@@ -57,7 +57,7 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
             backgroundColor: primaryColor,
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.chat_bubble,
+            icon: Icon(Icons.search,
                 color: _page == 1 ? primaryColor : secondaryColor),
             label: '',
             backgroundColor: primaryColor,
