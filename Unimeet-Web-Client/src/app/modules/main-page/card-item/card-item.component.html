@@ -1,4 +1,8 @@
-<div class="card" style="width: 30rem" [id]="'post'+ post.postId">
+<div class="card" style="width: 30rem" [id]="'post' + post.postId">
+  <img
+    class="circle-img"
+    src="https://www.w3schools.com/howto/img_avatar.png"
+  />
   <img
     class="card-img-top post-image"
     [src]="post.image"
@@ -31,7 +35,11 @@
       }}</b>
       {{ post.comments[0].content }}
     </p>
-    <p style="opacity: 0.6; cursor: pointer" (mouseenter)="showAllComments(post.postId)" (click)="showAllCommentsClick(post)">
+    <p
+      style="opacity: 0.6; cursor: pointer"
+      (mouseenter)="showAllComments(post.postId)"
+      (click)="showAllCommentsClick(post)"
+    >
       {{ post.numberOfComments }} yorumun tümünü gör
     </p>
   </div>

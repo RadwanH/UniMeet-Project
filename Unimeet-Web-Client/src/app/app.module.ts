@@ -6,17 +6,20 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { DxButtonModule } from 'devextreme-angular';
 
 @NgModule({
   declarations: [
     AppComponent,
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     LoginPageModule,
     MainPageModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    DxButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

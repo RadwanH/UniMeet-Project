@@ -1,0 +1,19 @@
+
+<div class="sidebar">
+  <h1>Unimeet</h1>
+  <a  (click)="onHomeClick()" ><fa-icon [icon]="faHouse"></fa-icon> Home </a>
+  <a (click)="onProfileClick()"><fa-icon [icon]="faProfile"></fa-icon> Profile</a>
+  <a (click)="onHomeClick()"><fa-icon [icon]="faSearch"></fa-icon> Search</a>
+  <a (click)="onHomeClick()"><fa-icon [icon]="faMessage"></fa-icon> Messages</a>
+  <dx-button (click)="createPost()"
+  stylingMode="contained"
+    type="default"> <fa-icon [icon]="faPlus"></fa-icon>
+    Create new post
+</dx-button>
+</div>
+
+<app-post-addition
+(popupHidden)="onPopupHidden()"
+[addPostPopupVisible]="addPostPopupVisible"
+>
+</app-post-addition>
