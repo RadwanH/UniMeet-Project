@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import { DxButtonModule, DxFileUploaderModule, DxPopupModule, DxProgressBarModule, DxScrollViewModule, DxTextAreaModule } from 'devextreme-angular';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -31,8 +32,8 @@ import { BrowserModule } from '@angular/platform-browser';
     DxFileUploaderModule,
     BrowserModule,
     DxProgressBarModule,
-    DxTextAreaModule
-
+    DxTextAreaModule,
+    HttpClientModule,
   ]
 })
 export class MainPageModule { }

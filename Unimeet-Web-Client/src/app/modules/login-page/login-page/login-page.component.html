@@ -10,7 +10,7 @@
               Email:
             </div>
             <div class="dx-field-value" style="width: 80%">
-              <dx-text-box mode="email" label="Email" labelMode="floating">
+              <dx-text-box mode="email" label="Email" labelMode="floating" [(value)]="emailValue">
                 <dx-validator>
                   <dxi-validation-rule
                     type="required"
@@ -39,6 +39,7 @@
                 mode="password"
                 label="Password"
                 labelMode="floating"
+                [(value)]="passwordValue"
               >
                 <dx-validator>
                   <dxi-validation-rule
@@ -56,7 +57,7 @@
             id="button"
             text="Login"
             type="success"
-            [useSubmitBehavior]="true"
+            [useSubmitBehavior]="false"
             style="display: block"
             (onClick)="login()"
           >

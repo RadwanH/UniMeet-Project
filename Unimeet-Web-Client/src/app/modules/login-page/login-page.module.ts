@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LoginPageComponent } from './login-page/login-page.component';
@@ -15,7 +16,8 @@ import { SignUpComponent } from './sign-up/sign-up.component';
     DxTextBoxModule,
     DxValidatorModule,
     DxButtonModule,
-    DxSelectBoxModule
+    DxSelectBoxModule,
+    HttpClientModule
   ],
   exports:[
     LoginPageComponent

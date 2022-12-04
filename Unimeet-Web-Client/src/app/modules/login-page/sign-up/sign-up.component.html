@@ -10,7 +10,7 @@
               First Name:
             </div>
             <div class="dx-field-value" style="width: 80%">
-              <dx-text-box mode="text" label="First Name" labelMode="floating">
+              <dx-text-box mode="text" label="First Name" labelMode="floating" [(value)]="firstName">
                 <dx-validator>
                   <dxi-validation-rule
                     type="required"
@@ -26,7 +26,7 @@
               Last Name:
             </div>
             <div class="dx-field-value" style="width: 80%">
-              <dx-text-box mode="text" label="Last Name" labelMode="floating">
+              <dx-text-box mode="text" label="Last Name" labelMode="floating" [(value)]="lastName">
                 <dx-validator>
                   <dxi-validation-rule
                     type="required"
@@ -42,7 +42,7 @@
               User Name:
             </div>
             <div class="dx-field-value" style="width: 80%">
-              <dx-text-box mode="text" label="User Name" labelMode="floating">
+              <dx-text-box mode="text" label="User Name" labelMode="floating" [(value)]="userName">
                 <dx-validator>
                   <dxi-validation-rule
                     type="required"
@@ -58,7 +58,7 @@
               Email:
             </div>
             <div class="dx-field-value" style="width: 80%">
-              <dx-text-box mode="email" label="Email" labelMode="floating">
+              <dx-text-box mode="email" label="Email" labelMode="floating" [(value)]="email">
                 <dx-validator>
                   <dxi-validation-rule
                     type="required"
@@ -87,6 +87,7 @@
                 mode="password"
                 label="Password"
                 labelMode="floating"
+                [(value)]="password"
               >
                 <dx-validator>
                   <dxi-validation-rule
@@ -103,7 +104,7 @@
               Gender:
             </div>
             <div class="dx-field-value" style="width: 80%">
-              <dx-select-box [items]="genders">
+              <dx-select-box [items]="genders" [(value)]="gender">
               <dx-validator>
                 <dxi-validation-rule
                   type="required"
@@ -115,10 +116,40 @@
           </div>
           <div class="dx-field">
             <div class="dx-field-label" style="width: 20%; color: white">
+              University:
+            </div>
+            <div class="dx-field-value" style="width: 80%">
+              <dx-select-box [dataSource]="universities" displayExpr="uniName" [(value)]="university" (onValueChanged)="universityValueChanged($event)">
+              <dx-validator>
+                <dxi-validation-rule
+                  type="required"
+                  message="University is required"
+                >
+                </dxi-validation-rule>
+              </dx-validator></dx-select-box>
+            </div>
+          </div>
+          <div class="dx-field">
+            <div class="dx-field-label" style="width: 20%; color: white">
+              Department:
+            </div>
+            <div class="dx-field-value" style="width: 80%">
+              <dx-select-box [dataSource]="departments" displayExpr="deptName" [(value)]="department">
+              <dx-validator>
+                <dxi-validation-rule
+                  type="required"
+                  message="Department is required"
+                >
+                </dxi-validation-rule>
+              </dx-validator></dx-select-box>
+            </div>
+          </div>
+          <div class="dx-field">
+            <div class="dx-field-label" style="width: 20%; color: white">
               Phone:
             </div>
             <div class="dx-field-value" style="width: 80%">
-              <dx-text-box mode="tel" mask="(X00) 000-0000" [maskRules]="phoneNumberRules">
+              <dx-text-box mode="tel" mask="(X00) 000-0000" [maskRules]="phoneNumberRules" [(value)]="phone">
                 <dx-validator>
                   <dxi-validation-rule
                     type="required"
@@ -135,7 +166,7 @@
             id="button"
             text="Sign-Up"
             type="success"
-            [useSubmitBehavior]="true"
+            [useSubmitBehavior]="false"
             style="display: block"
             (onClick)="signUp()"
           >

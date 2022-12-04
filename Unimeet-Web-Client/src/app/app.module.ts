@@ -1,3 +1,5 @@
+import { ControllerService } from 'src/app/typescript-angular-client';
+import { HttpClientModule } from '@angular/common/http';
 import { MainPageModule } from './modules/main-page/main-page.module';
 import { LoginPageModule } from './modules/login-page/login-page.module';
 import { NgModule } from '@angular/core';
@@ -11,7 +13,6 @@ import { DxButtonModule } from 'devextreme-angular';
 @NgModule({
   declarations: [
     AppComponent,
-
   ],
   imports: [
     BrowserModule,
@@ -19,7 +20,8 @@ import { DxButtonModule } from 'devextreme-angular';
     LoginPageModule,
     MainPageModule,
     FontAwesomeModule,
-    DxButtonModule
+    DxButtonModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
