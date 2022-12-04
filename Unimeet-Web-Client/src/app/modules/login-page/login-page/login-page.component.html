@@ -10,7 +10,7 @@
               Email:
             </div>
             <div class="dx-field-value" style="width: 80%">
-              <dx-text-box mode="email" label="Email" labelMode="floating" [(value)]="emailValue">
+              <dx-text-box mode="email" label="Email" labelMode="hidden" [(value)]="emailValue">
                 <dx-validator>
                   <dxi-validation-rule
                     type="required"
@@ -38,7 +38,7 @@
               <dx-text-box
                 mode="password"
                 label="Password"
-                labelMode="floating"
+                labelMode="hidden"
                 [(value)]="passwordValue"
               >
                 <dx-validator>

@@ -31,6 +31,7 @@ export class LoginPageComponent implements OnInit {
     this.users.forEach((user)=>{
       if(user.email === this.emailValue && user.password === this.passwordValue){
         this.userId = 5;  //change when access id from userViewDto;
+
         this.router.navigateByUrl('/mainPage');
       }
     })

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { distinct, from, map } from 'rxjs';
 import {
   ControllerService,
   DepartmentViewDto,
@@ -56,27 +55,25 @@ export class SignUpComponent implements OnInit {
   }
   signUp() {
     this.unimeetService.createUserUsingPOST({
+      email: this.email,
+      gender: this.gender,
       firstName: this.firstName,
       lastName: this.lastName,
-      userName: this.userName,
-      email: this.email,
-      password: this.password,
-      gender: this.gender,
       phoneNumber: this.phone,
-      userBio: 'bio',
-      uniDept: {
-        uniDeptId: 3,
-        uniViewDto: {
-          uniID: this.universities.find((u) => u.uniName === this.university)
-            ?.uniID,
-          uniName: this.university,
-        },
+      uniDeptViewDto: {
         departmentViewDto: {
           deptId: this.departments.find((d) => d.deptName === this.department)
             ?.deptId,
-          deptName: this.department,
         },
+        uniViewDto: {
+          uniID: this.universities.find((u) => u.uniName === this.university)
+            ?.uniID,
+        },
+        uniDeptId: 3,
       },
+      userBio: '',
+      userName: this.userName,
+      userPassword: this.password,
     }).subscribe();
   }
   login() {

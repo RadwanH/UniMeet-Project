@@ -12,15 +12,14 @@
 import { UniDeptViewDto } from './uniDeptViewDto';
 
 
-export interface UserViewDTO { 
+export interface UserCreateDTO { 
     email?: string;
     firstName?: string;
     gender?: string;
     lastName?: string;
-    password?: string;
     phoneNumber?: string;
-    uniDept?: UniDeptViewDto;
+    uniDeptViewDto?: UniDeptViewDto;
     userBio?: string;
     userName?: string;
-    userId?: number;
+    userPassword?: string;
 }

@@ -9,8 +9,10 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+import { UserViewDTO } from './userViewDTO';
 
 
 export interface PostCreateDTO { 
     content?: string;
+    user?: UserViewDTO;
 }

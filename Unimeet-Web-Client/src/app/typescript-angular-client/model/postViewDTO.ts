@@ -14,5 +14,6 @@ import { UserViewDTO } from './userViewDTO';
 
 export interface PostViewDTO { 
     content?: string;
+    postId?: number;
     user?: UserViewDTO;
 }

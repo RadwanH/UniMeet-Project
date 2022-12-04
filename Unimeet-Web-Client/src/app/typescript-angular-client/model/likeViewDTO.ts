@@ -14,6 +14,7 @@ import { UserViewDTO } from './userViewDTO';
 
 
 export interface LikeViewDTO { 
+    likeId?: number;
     posts?: PostViewDTO;
     users?: UserViewDTO;
 }

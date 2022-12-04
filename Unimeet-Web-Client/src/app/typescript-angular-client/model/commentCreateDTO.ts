@@ -13,8 +13,7 @@ import { PostViewDTO } from './postViewDTO';
 import { UserViewDTO } from './userViewDTO';
 
 
-export interface CommentViewDTO { 
-    commentId?: number;
+export interface CommentCreateDTO { 
     content?: string;
     posts?: PostViewDTO;
     users?: UserViewDTO;
