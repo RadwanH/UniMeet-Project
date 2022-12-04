@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:unimeet101/utils/colors.dart';
 import 'package:unimeet101/utils/global_variables.dart';
 
@@ -62,9 +63,18 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
             label: '',
             backgroundColor: primaryColor,
           ),
+          // BottomNavigationBarItem(
+          //   icon: Icon(Icons.add_circle,
+          //       color: _page == 2 ? primaryColor : secondaryColor),
+          //   label: '',
+          //   backgroundColor: primaryColor,
+          // ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.add_circle,
-                color: _page == 2 ? primaryColor : secondaryColor),
+            icon: SvgPicture.asset(
+              'assets/images/unimeet.svg',
+              color: _page == 2 ? kPrimaryColor : secondaryColor,
+              height: 30,
+            ),
             label: '',
             backgroundColor: primaryColor,
           ),
