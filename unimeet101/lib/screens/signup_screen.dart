@@ -134,11 +134,16 @@ class _SignupScreenState extends State<SignupScreen> {
                     ],
                   ),
                   const SizedBox(
-                    height: 64,
+                    height: 30,
                   ),
 
                   //text field input for name
                   TextFieldInput(
+                      iconPic: const Padding(
+                        padding: EdgeInsets.all(16),
+                        child: Icon(Icons.badge),
+                        //child: Icon(Icons.iconPic),
+                      ),
                       textEditingController: _nameController,
                       hintText: "Your name",
                       textInputType: TextInputType.text),
@@ -149,6 +154,11 @@ class _SignupScreenState extends State<SignupScreen> {
 
                   //text field input for Last name
                   TextFieldInput(
+                      iconPic: const Padding(
+                        padding: EdgeInsets.all(16),
+                        child: Icon(Icons.badge),
+                        //child: Icon(Icons.iconPic),
+                      ),
                       textEditingController: _lastNameController,
                       hintText: "Enter your last name",
                       textInputType: TextInputType.text),
@@ -159,6 +169,11 @@ class _SignupScreenState extends State<SignupScreen> {
 
                   //text field input for gender
                   TextFieldInput(
+                      iconPic: const Padding(
+                        padding: EdgeInsets.all(16),
+                        child: Icon(Icons.female),
+                        //child: Icon(Icons.iconPic),
+                      ),
                       textEditingController: _genderController,
                       hintText: "Enter gender",
                       textInputType: TextInputType.text),
@@ -169,6 +184,11 @@ class _SignupScreenState extends State<SignupScreen> {
 
                   //text field input for username
                   TextFieldInput(
+                      iconPic: const Padding(
+                        padding: EdgeInsets.all(16),
+                        child: Icon(Icons.person),
+                        //child: Icon(Icons.iconPic),
+                      ),
                       textEditingController: _usernameController,
                       hintText: "Enter your username",
                       textInputType: TextInputType.text),
@@ -178,6 +198,11 @@ class _SignupScreenState extends State<SignupScreen> {
                   ),
                   // user bio
                   TextFieldInput(
+                      iconPic: const Padding(
+                        padding: EdgeInsets.all(16),
+                        child: Icon(Icons.history_edu),
+                        //child: Icon(Icons.iconPic),
+                      ),
                       textEditingController: _bioController,
                       hintText: "Enter your bio",
                       textInputType: TextInputType.text),
@@ -188,6 +213,11 @@ class _SignupScreenState extends State<SignupScreen> {
 
                   //text field input for email
                   TextFieldInput(
+                      iconPic: const Padding(
+                        padding: EdgeInsets.all(16),
+                        child: Icon(Icons.email),
+                        //child: Icon(Icons.iconPic),
+                      ),
                       textEditingController: _emailController,
                       hintText: "Email address",
                       textInputType: TextInputType.emailAddress),
@@ -198,6 +228,11 @@ class _SignupScreenState extends State<SignupScreen> {
 
                   // password field
                   TextFieldInput(
+                    iconPic: const Padding(
+                      padding: EdgeInsets.all(16),
+                      child: Icon(Icons.lock),
+                      //child: Icon(Icons.iconPic),
+                    ),
                     textEditingController: _passwordController,
                     hintText: "Password",
                     textInputType: TextInputType.text,
@@ -209,28 +244,48 @@ class _SignupScreenState extends State<SignupScreen> {
 
                   // button Signup
 
-                  InkWell(
-                    onTap: signUpUser,
+                  // InkWell(
+                  //   onTap: signUpUser,
+                  //   child: Container(
+                  //     child: _isLoading
+                  //         ? const Center(
+                  //             child: CircularProgressIndicator(
+                  //               color: primaryColor,
+                  //             ),
+                  //           )
+                  //         : const Text('Sign Up'),
+                  //     width: double.infinity,
+                  //     alignment: Alignment.center,
+                  //     padding: const EdgeInsets.symmetric(
+                  //       vertical: 12,
+                  //     ),
+                  //     decoration: const ShapeDecoration(
+                  //         shape: RoundedRectangleBorder(
+                  //           borderRadius: BorderRadius.all(
+                  //             Radius.circular(4),
+                  //           ),
+                  //         ),
+                  //         color: blueColor),
+                  //   ),
+                  // ),
+                  ElevatedButton(
+                    onPressed: signUpUser,
                     child: Container(
+                      width: double.infinity,
+                      alignment: Alignment.center,
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 12,
+                      ),
                       child: _isLoading
                           ? const Center(
                               child: CircularProgressIndicator(
                                 color: primaryColor,
                               ),
                             )
-                          : const Text('Sign Up'),
-                      width: double.infinity,
-                      alignment: Alignment.center,
-                      padding: const EdgeInsets.symmetric(
-                        vertical: 12,
-                      ),
-                      decoration: const ShapeDecoration(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(4),
+                          : const Text(
+                              'REGISTER',
+                              style: TextStyle(fontWeight: FontWeight.bold),
                             ),
-                          ),
-                          color: blueColor),
                     ),
                   ),
                   const SizedBox(
@@ -254,7 +309,9 @@ class _SignupScreenState extends State<SignupScreen> {
                           child: const Text(
                             "Login",
                             style: TextStyle(
-                                fontWeight: FontWeight.bold, color: blueColor),
+                              fontWeight: FontWeight.bold,
+                              color: kPrimaryColor,
+                            ),
                           ),
                           padding: const EdgeInsets.symmetric(
                             vertical: 8,

@@ -46,6 +46,25 @@ class MyApp extends StatelessWidget {
         title: 'Unimeet',
         theme: ThemeData.dark().copyWith(
           scaffoldBackgroundColor: mobileBackgroundColor,
+          inputDecorationTheme: const InputDecorationTheme(
+            filled: true,
+            //iconColor: kPrimaryColor,
+            //prefixIconColor: kPrimaryColor,
+            contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.all(Radius.circular(50)),
+              borderSide: BorderSide.none,
+            ),
+          ),
+          elevatedButtonTheme: ElevatedButtonThemeData(
+            style: ElevatedButton.styleFrom(
+              elevation: 0,
+              backgroundColor: kPrimaryColor,
+              shape: const StadiumBorder(),
+              maximumSize: const Size(double.infinity, 56),
+              minimumSize: const Size(double.infinity, 56),
+            ),
+          ),
         ),
         home: StreamBuilder(
           //stream: FirebaseAuth.instance.userChanges(), //this gets called when u want to change have password change and stuff
