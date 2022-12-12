@@ -8,4 +8,6 @@ const primaryColor = Colors.white;
 const secondaryColor = Colors.grey;
 const kPrimaryColor = Color(0xFF6E4CA7);
 const kPrimaryLightColor = Color(0xFFF1E6FF);
+const activeColor = Color(0xFFFC0B7B);
+const logoColor = Color(0xFFAA1CC4);
 const unimeetPurple = Color(0x00C83EFF);

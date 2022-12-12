@@ -163,6 +163,9 @@ class _AddPostScreenState extends State<AddPostScreen> {
                         CircleAvatar(
                           backgroundImage: NetworkImage(user.photoUrl),
                         ),
+                        const SizedBox(
+                          height: 30,
+                        ),
                         Column(
                           children: [
                             SizedBox(
@@ -170,6 +173,7 @@ class _AddPostScreenState extends State<AddPostScreen> {
                               child: TextField(
                                 controller: _descriptionController,
                                 decoration: const InputDecoration(
+                                  fillColor: mobileBackgroundColor,
                                   hintText: 'Write a caption...',
                                   border: InputBorder.none,
                                 ),

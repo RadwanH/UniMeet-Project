@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:unimeet101/models/user.dart';
@@ -65,161 +66,196 @@ class _PostCardState extends State<PostCard> {
 
     return Container(
       decoration: BoxDecoration(
-        border: Border.all(
-          color: width > webScreenSize
-              ? secondaryColor.shade900
-              : mobileBackgroundColor,
-        ),
-      ),
+          // border: Border.all(
+          //   color: width > webScreenSize
+          //       ? secondaryColor.shade900
+          //       : mobileBackgroundColor,
+          // ),
+          ),
       padding: const EdgeInsets.symmetric(
         vertical: 10,
       ),
-      child: Column(
-        children: [
-          // header section
-          Container(
-            padding: const EdgeInsets.symmetric(
-              vertical: 4,
-              horizontal: 16,
-            ).copyWith(right: 0),
-            child: Row(
-              children: [
-                CircleAvatar(
-                  radius: 16,
-                  backgroundImage: NetworkImage(
-                    widget.snap['profImage'],
-                  ),
-                ),
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.only(
-                      left: 8,
+      child: Container(
+        margin: const EdgeInsets.symmetric(horizontal: 10),
+        decoration: BoxDecoration(
+          border: Border.all(
+            color: Colors.blueAccent,
+          ),
+          borderRadius: BorderRadius.circular(15),
+          boxShadow: const [
+            BoxShadow(
+              color: Colors.black,
+              offset: Offset(
+                5.0,
+                5.0,
+              ), //Offset
+              blurRadius: 50.0,
+              spreadRadius: 2.0,
+            ), //BoxShadow
+            BoxShadow(
+              color: Color(0xFF1E1E1E),
+              offset: Offset(0.0, 0.0),
+              blurRadius: 0.0,
+              spreadRadius: 0.0,
+            ), //BoxShadow
+          ],
+        ),
+        child: Column(
+          children: [
+            // header section
+            Container(
+              padding: const EdgeInsets.symmetric(
+                vertical: 4,
+                horizontal: 16,
+              ).copyWith(right: 0),
+              child: Row(
+                children: [
+                  CircleAvatar(
+                    radius: 20,
+                    backgroundImage: NetworkImage(
+                      widget.snap['profImage'],
                     ),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          widget.snap['username'],
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
+                  ),
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.only(
+                        left: 8,
+                      ),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            widget.snap['username'],
+                            style: const TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  IconButton(
+                    onPressed: () {
+                      showDialog(
+                        context: context,
+                        builder: (context) => Dialog(
+                          child: ListView(
+                            padding: const EdgeInsets.symmetric(
+                              vertical: 16,
+                            ),
+                            shrinkWrap: true,
+                            children: [
+                              'Delete',
+                            ]
+                                .map(
+                                  (e) => InkWell(
+                                    onTap: () async {
+                                      FirestoreMethods()
+                                          .deletePost(widget.snap['postId']);
+                                      Navigator.of(context).pop();
+                                    },
+                                    child: Container(
+                                      padding: const EdgeInsets.symmetric(
+                                        vertical: 12,
+                                        horizontal: 16,
+                                      ),
+                                      child: Text(e),
+                                    ),
+                                  ),
+                                )
+                                .toList(),
                           ),
                         ),
-                      ],
+                      );
+                    },
+                    icon: const Icon(
+                      Icons.more_vert,
+                      color: logoColor,
                     ),
+                  )
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                alignment: Alignment.topLeft,
+                child: RichText(
+                  text: TextSpan(
+                    style: const TextStyle(color: primaryColor),
+                    children: [
+                      TextSpan(
+                        text: ' ${widget.snap['description']}',
+                      ),
+                    ],
                   ),
                 ),
-                IconButton(
-                  onPressed: () {
-                    showDialog(
-                      context: context,
-                      builder: (context) => Dialog(
-                        child: ListView(
-                          padding: const EdgeInsets.symmetric(
-                            vertical: 16,
-                          ),
-                          shrinkWrap: true,
-                          children: [
-                            'Delete',
-                          ]
-                              .map(
-                                (e) => InkWell(
-                                  onTap: () async {
-                                    FirestoreMethods()
-                                        .deletePost(widget.snap['postId']);
-                                    Navigator.of(context).pop();
-                                  },
-                                  child: Container(
-                                    padding: const EdgeInsets.symmetric(
-                                      vertical: 12,
-                                      horizontal: 16,
-                                    ),
-                                    child: Text(e),
-                                  ),
-                                ),
-                              )
-                              .toList(),
+              ),
+            ),
+            const SizedBox(
+              height: 15,
+            ),
+
+            //IMAGE SECTion
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              child: GestureDetector(
+                onDoubleTap: (() async {
+                  await FirestoreMethods().likePost(
+                      widget.snap['postId'], user.uid, widget.snap['likes']);
+                  setState(() {
+                    isLikeAnimating = true;
+                  });
+                }),
+                child: Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.35,
+                      width: double.infinity,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(15.0),
+                        child: Image.network(
+                          widget.snap['postUrl'],
+                          fit: BoxFit.cover,
                         ),
                       ),
-                    );
-                  },
-                  icon: const Icon(Icons.more_vert),
-                )
-              ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Container(
-              alignment: Alignment.topLeft,
-              child: RichText(
-                text: TextSpan(
-                  style: const TextStyle(color: primaryColor),
-                  children: [
-                    TextSpan(
-                      text: ' ${widget.snap['description']}',
+                    ),
+                    AnimatedOpacity(
+                      duration: const Duration(microseconds: 200),
+                      opacity: isLikeAnimating ? 0.5 : 0,
+                      child: LikeAnimation(
+                        isAnimating: isLikeAnimating,
+                        duration: const Duration(
+                          microseconds: 400,
+                        ),
+                        onEnd: () {
+                          setState(() {
+                            isLikeAnimating = false;
+                          });
+                        },
+                        child: SvgPicture.asset(
+                          'assets/icons/star_fill.svg',
+                          color: primaryColor,
+                          height: 150,
+                        ),
+                      ),
                     ),
                   ],
                 ),
               ),
             ),
-          ),
 
-          //IMAGE SECTion
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8.0),
-            child: GestureDetector(
-              onDoubleTap: (() async {
-                await FirestoreMethods().likePost(
-                    widget.snap['postId'], user.uid, widget.snap['likes']);
-                setState(() {
-                  isLikeAnimating = true;
-                });
-              }),
-              child: Stack(
-                alignment: Alignment.center,
-                children: [
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.35,
-                    width: double.infinity,
-                    child: Image.network(
-                      widget.snap['postUrl'],
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                  AnimatedOpacity(
-                    duration: const Duration(microseconds: 200),
-                    opacity: isLikeAnimating ? 0.5 : 0,
-                    child: LikeAnimation(
-                      isAnimating: isLikeAnimating,
-                      duration: const Duration(
-                        microseconds: 400,
-                      ),
-                      onEnd: () {
-                        setState(() {
-                          isLikeAnimating = false;
-                        });
-                      },
-                      child: const Icon(
-                        Icons.star,
-                        color: Colors.white,
-                        size: 150,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
+            // Like and Comment section
 
-          // Like and Comment section
-
-          Row(
-            children: [
-              LikeAnimation(
-                isAnimating: widget.snap['likes'].contains(user.uid),
-                smallLike: true,
-                child: IconButton(
+            Row(
+              children: [
+                LikeAnimation(
+                  isAnimating: widget.snap['likes'].contains(user.uid),
+                  smallLike: true,
+                  child: IconButton(
                     onPressed: () async {
                       await FirestoreMethods().likePost(widget.snap['postId'],
                           user.uid, widget.snap['likes']);
@@ -228,113 +264,123 @@ class _PostCardState extends State<PostCard> {
                       });
                     },
                     icon: widget.snap['likes'].contains(user.uid)
-                        ? const Icon(
-                            Icons.star,
-                            color: Colors.red,
+                        ? SvgPicture.asset(
+                            'assets/icons/star_fill.svg',
+                            color: activeColor,
+                            height: 25,
                           )
-                        : const Icon(
-                            Icons.star_border,
-                          )),
-              ),
-              IconButton(
-                onPressed: () => Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => CommentsScreen(snap: widget.snap),
+                        : SvgPicture.asset(
+                            'assets/icons/star.svg',
+                            color: activeColor,
+                            height: 27,
+                          ),
                   ),
                 ),
-                icon: const Icon(
-                  Icons.comment_outlined,
-                ),
-              ),
-              IconButton(
-                onPressed: () {},
-                icon: const Icon(
-                  Icons.send,
-                ),
-              ),
-              Expanded(
-                child: Align(
-                  alignment: Alignment.bottomRight,
-                  child: IconButton(
-                    onPressed: () {},
-                    icon: const Icon(
-                      Icons.bookmark_outline,
+                IconButton(
+                  onPressed: () => Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => CommentsScreen(snap: widget.snap),
                     ),
                   ),
-                ),
-              )
-            ],
-          ),
-
-          // Description and number of comments
-          Container(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 16,
-            ),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                DefaultTextStyle(
-                  style: Theme.of(context).textTheme.subtitle2!.copyWith(
-                        fontWeight: FontWeight.w800,
-                      ),
-                  child: Text(
-                    '${widget.snap['likes'].length} stars', //stars = likes
-                    style: Theme.of(context).textTheme.bodyText2,
+                  icon: SvgPicture.asset(
+                    'assets/icons/comment.svg',
+                    color: activeColor,
+                    height: 25,
                   ),
                 ),
-                Container(
-                  width: double.infinity,
-                  padding: const EdgeInsets.only(top: 8),
-                  // child: RichText(
-                  //   text: TextSpan(
-                  //     style: const TextStyle(color: primaryColor),
-                  //     children: [
-                  //       TextSpan(
-                  //         text: snap['username'],
-                  //         style: const TextStyle(
-                  //           fontWeight: FontWeight.bold,
-                  //         ),
-                  //       ),
-                  //       TextSpan(
-                  //         text: ' ${snap['description']}',
-                  //       ),
-                  //     ],
-                  //   ),
-                  // ),
-                ),
+                // IconButton(
+                //   onPressed: () {},
+                //   icon: const Icon(
+                //     Icons.send,
+                //   ),
+                // ),
+                // Expanded(
+                //   child: Align(
+                //     alignment: Alignment.bottomRight,
+                //     child: IconButton(
+                //       onPressed: () {},
+                //       icon: const Icon(
+                //         Icons.bookmark_outline,
+                //       ),
+                //     ),
+                //   ),
+                // )
+              ],
+            ),
 
-                // Num of comments
-                InkWell(
-                  onTap: () {},
-                  child: Container(
+            //  number of comments
+            Container(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 16,
+              ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  DefaultTextStyle(
+                    style: Theme.of(context).textTheme.subtitle2!.copyWith(
+                          fontWeight: FontWeight.w800,
+                        ),
+                    child: Text(
+                      '${widget.snap['likes'].length} stars', //stars = likes
+                      style: Theme.of(context).textTheme.bodyText2,
+                    ),
+                  ),
+                  Container(
+                    width: double.infinity,
+                    padding: const EdgeInsets.only(top: 8),
+                    // child: RichText(
+                    //   text: TextSpan(
+                    //     style: const TextStyle(color: primaryColor),
+                    //     children: [
+                    //       TextSpan(
+                    //         text: snap['username'],
+                    //         style: const TextStyle(
+                    //           fontWeight: FontWeight.bold,
+                    //         ),
+                    //       ),
+                    //       TextSpan(
+                    //         text: ' ${snap['description']}',
+                    //       ),
+                    //     ],
+                    //   ),
+                    // ),
+                  ),
+
+                  // Num of comments
+                  InkWell(
+                    onTap: () {},
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(vertical: 4),
+                      child: Text(
+                        'view all ${commentLen} comments',
+                        style: const TextStyle(
+                          fontSize: 16,
+                          color: secondaryColor,
+                        ),
+                      ),
+                    ),
+                  ),
+                  Container(
                     padding: const EdgeInsets.symmetric(vertical: 4),
                     child: Text(
-                      'view all ${commentLen} comments',
+                      DateFormat.yMMMd().format(
+                        widget.snap['datePublished'].toDate(),
+                      ),
                       style: const TextStyle(
                         fontSize: 16,
                         color: secondaryColor,
                       ),
                     ),
                   ),
-                ),
-                Container(
-                  padding: const EdgeInsets.symmetric(vertical: 4),
-                  child: Text(
-                    DateFormat.yMMMd().format(
-                      widget.snap['datePublished'].toDate(),
-                    ),
-                    style: const TextStyle(
-                      fontSize: 16,
-                      color: secondaryColor,
-                    ),
-                  ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-        ],
+            const SizedBox(
+              height: 20,
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -50,16 +50,26 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
         backgroundColor: mobileBackgroundColor,
         items: [
           BottomNavigationBarItem(
-            icon: Icon(
-              Icons.home,
-              color: _page == 0 ? primaryColor : secondaryColor,
+            icon: SvgPicture.asset(
+              'assets/images/home.svg',
+              color: _page == 0 ? null : secondaryColor,
+              height: 25,
             ),
             label: '',
             backgroundColor: primaryColor,
           ),
+          // BottomNavigationBarItem(
+          //   icon: Icon(Icons.search,
+          //       color: _page == 1 ? primaryColor : secondaryColor),
+          //   label: '',
+          //   backgroundColor: primaryColor,
+          // ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.search,
-                color: _page == 1 ? primaryColor : secondaryColor),
+            icon: SvgPicture.asset(
+              'assets/icons/search.svg',
+              color: _page == 1 ? activeColor : secondaryColor,
+              height: 25,
+            ),
             label: '',
             backgroundColor: primaryColor,
           ),
@@ -71,22 +81,31 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
           // ),
           BottomNavigationBarItem(
             icon: SvgPicture.asset(
-              'assets/images/unimeet.svg',
-              color: _page == 2 ? kPrimaryColor : secondaryColor,
-              height: 30,
+              'assets/icons/add_post.svg',
+              color: _page == 2 ? null : null,
+              height: 60,
+            ),
+            label: '',
+            backgroundColor: primaryColor,
+          ),
+          // BottomNavigationBarItem(
+          //   icon: Icon(Icons.favorite,
+          //       color: _page == 3 ? primaryColor : secondaryColor),
+          //   label: '',
+          //   backgroundColor: primaryColor,
+          // ),
+          BottomNavigationBarItem(
+            icon: SvgPicture.asset(
+              'assets/icons/bar_heart.svg',
+              color: _page == 3 ? activeColor : secondaryColor,
+              height: 25,
             ),
             label: '',
             backgroundColor: primaryColor,
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.favorite,
-                color: _page == 3 ? primaryColor : secondaryColor),
-            label: '',
-            backgroundColor: primaryColor,
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person,
-                color: _page == 4 ? primaryColor : secondaryColor),
+            icon: Icon(Icons.person_outline,
+                color: _page == 4 ? activeColor : secondaryColor),
             label: '',
             backgroundColor: primaryColor,
           ),
