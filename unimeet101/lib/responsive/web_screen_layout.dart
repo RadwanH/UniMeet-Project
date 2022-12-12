@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:unimeet101/utils/colors.dart';
 import 'package:unimeet101/utils/global_variables.dart';
 
@@ -50,11 +51,10 @@ class _WebScreenLayoutState extends State<WebScreenLayout> {
             const SizedBox(
               width: 50,
             ),
-            Image.asset(
-              'assets/images/uniMeet_brand_.png',
-              fit: BoxFit.cover,
-              height: 38,
-            ),
+            SvgPicture.asset(
+              'assets/images/unimeet_logo.svg',
+              height: 48,
+            )
           ],
         ),
         actions: [
