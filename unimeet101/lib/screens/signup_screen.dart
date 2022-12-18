@@ -169,14 +169,15 @@ class _SignupScreenState extends State<SignupScreen> {
 
                   //text field input for gender
                   TextFieldInput(
-                      iconPic: const Padding(
-                        padding: EdgeInsets.all(16),
-                        child: Icon(Icons.female),
-                        //child: Icon(Icons.iconPic),
-                      ),
-                      textEditingController: _genderController,
-                      hintText: "Enter gender",
-                      textInputType: TextInputType.text),
+                    iconPic: const Padding(
+                      padding: EdgeInsets.all(16),
+                      child: Icon(Icons.female),
+                      //child: Icon(Icons.iconPic),
+                    ),
+                    textEditingController: _genderController,
+                    hintText: "Enter gender",
+                    textInputType: TextInputType.text,
+                  ),
 
                   const SizedBox(
                     height: 24,
@@ -213,6 +214,7 @@ class _SignupScreenState extends State<SignupScreen> {
 
                   //text field input for email
                   TextFieldInput(
+                      isEmail: true,
                       iconPic: const Padding(
                         padding: EdgeInsets.all(16),
                         child: Icon(Icons.email),
