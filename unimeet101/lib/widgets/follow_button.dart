@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:unimeet101/utils/global_variables.dart';
 
 class FollowButton extends StatelessWidget {
   final Function()? function;
@@ -18,7 +19,9 @@ class FollowButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(top: 2),
+      padding: MediaQuery.of(context).size.width <= webScreenSize
+          ? const EdgeInsets.only(top: 2)
+          : const EdgeInsets.only(top: 10),
       child: TextButton(
         onPressed: function,
         child: Container(
@@ -30,8 +33,8 @@ class FollowButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(5),
           ),
           alignment: Alignment.center,
-          width: 250,
-          height: 27,
+          width: MediaQuery.of(context).size.width <= webScreenSize ? 250 : 350,
+          height: MediaQuery.of(context).size.width <= webScreenSize ? 27 : 37,
           child: Text(
             text,
             style: TextStyle(
