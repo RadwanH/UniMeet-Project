@@ -59,7 +59,7 @@ class _AddPostScreenState extends State<AddPostScreen> {
             children: [
               SimpleDialogOption(
                 padding: const EdgeInsets.all(20),
-                child: Text('Take a photo '),
+                child: const Text('Take a photo '),
                 onPressed: () async {
                   Navigator.of(context).pop();
                   Uint8List file = await pickImage(
@@ -72,7 +72,7 @@ class _AddPostScreenState extends State<AddPostScreen> {
               ),
               SimpleDialogOption(
                 padding: const EdgeInsets.all(20),
-                child: Text('Choose from gallery'),
+                child: const Text('Choose from gallery'),
                 onPressed: () async {
                   Navigator.of(context).pop();
                   Uint8List file = await pickImage(
@@ -85,7 +85,7 @@ class _AddPostScreenState extends State<AddPostScreen> {
               ),
               SimpleDialogOption(
                 padding: const EdgeInsets.all(20),
-                child: Text('Cancel'),
+                child: const Text('Cancel'),
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
@@ -130,7 +130,7 @@ class _AddPostScreenState extends State<AddPostScreen> {
             appBar: AppBar(
               backgroundColor: mobileBackgroundColor,
               leading: IconButton(
-                icon: Icon(Icons.arrow_back),
+                icon: const Icon(Icons.arrow_back),
                 onPressed: clearImage,
               ),
               title: const Text('Post'),
@@ -177,7 +177,7 @@ class _AddPostScreenState extends State<AddPostScreen> {
                                   hintText: 'Write a caption...',
                                   border: InputBorder.none,
                                 ),
-                                maxLines: 10,
+                                maxLines: 4,
                               ),
                             ),
                             SizedBox(
