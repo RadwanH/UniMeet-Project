@@ -1,11 +1,12 @@
 import 'dart:ui';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
-import 'package:unimeet101/models/user.dart';
+import 'package:unimeet101/models/user.dart' as user_model;
 import 'package:unimeet101/providers/user_provider.dart';
 import 'package:unimeet101/resources/firestore_methods.dart';
 import 'package:unimeet101/screens/comments_screen.dart';
@@ -55,7 +56,7 @@ class _PostCardState extends State<PostCard> {
   @override
   Widget build(BuildContext context) {
     //final User user = Provider.of<UserProvider>(context).getUser;
-    final User? user = Provider.of<UserProvider>(context).getUser;
+    final user_model.User? user = Provider.of<UserProvider>(context).getUser;
     if (user == null) {
       return const Center(
           child: CircularProgressIndicator(
@@ -128,37 +129,40 @@ class _PostCardState extends State<PostCard> {
                   ),
                   IconButton(
                     onPressed: () {
-                      showDialog(
-                        context: context,
-                        builder: (context) => Dialog(
-                          child: ListView(
-                            padding: const EdgeInsets.symmetric(
-                              vertical: 16,
-                            ),
-                            shrinkWrap: true,
-                            children: [
-                              'Delete',
-                            ]
-                                .map(
-                                  (e) => InkWell(
-                                    onTap: () async {
-                                      FirestoreMethods()
-                                          .deletePost(widget.snap['postId']);
-                                      Navigator.of(context).pop();
-                                    },
-                                    child: Container(
-                                      padding: const EdgeInsets.symmetric(
-                                        vertical: 12,
-                                        horizontal: 16,
+                      if (widget.snap['uid'] ==
+                          FirebaseAuth.instance.currentUser!.uid) {
+                        showDialog(
+                          context: context,
+                          builder: (context) => Dialog(
+                            child: ListView(
+                              padding: const EdgeInsets.symmetric(
+                                vertical: 16,
+                              ),
+                              shrinkWrap: true,
+                              children: [
+                                'Delete',
+                              ]
+                                  .map(
+                                    (e) => InkWell(
+                                      onTap: () async {
+                                        FirestoreMethods()
+                                            .deletePost(widget.snap['postId']);
+                                        Navigator.of(context).pop();
+                                      },
+                                      child: Container(
+                                        padding: const EdgeInsets.symmetric(
+                                          vertical: 12,
+                                          horizontal: 16,
+                                        ),
+                                        child: Text(e),
                                       ),
-                                      child: Text(e),
                                     ),
-                                  ),
-                                )
-                                .toList(),
+                                  )
+                                  .toList(),
+                            ),
                           ),
-                        ),
-                      );
+                        );
+                      } else {}
                     },
                     icon: const Icon(
                       Icons.more_vert,

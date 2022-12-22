@@ -89,6 +89,8 @@ class FirestoreMethods {
     }
   }
 
+  //following
+
   Future<void> followUser(
     String uid,
     String followId,
