@@ -92,7 +92,7 @@ class _CommentsScreenState extends State<CommentsScreen> {
                     widget.snap['postId'],
                     _commentController.text,
                     user.uid,
-                    user.name,
+                    user.displsyname,
                     user.photoUrl,
                   );
                   setState(() {

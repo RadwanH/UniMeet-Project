@@ -22,9 +22,8 @@ class AuthMethods {
   // signup user
 
   Future<String> signUpUser({
-    required String name,
-    required String lastName,
-    required String gender,
+    required String displsyname,
+    required String university,
     required String username,
     required String email,
     required String password,
@@ -33,9 +32,8 @@ class AuthMethods {
   }) async {
     String res = "Some error occurred";
     try {
-      if (name.isNotEmpty ||
-          lastName.isNotEmpty ||
-          gender.isNotEmpty ||
+      if (displsyname.isNotEmpty ||
+          university.isNotEmpty ||
           username.isNotEmpty ||
           email.isNotEmpty ||
           password.isNotEmpty ||
@@ -53,11 +51,10 @@ class AuthMethods {
         // add user to our database
 
         model.User user = model.User(
-            name: name,
-            lastName: lastName,
+            displsyname: displsyname,
             uid: cred.user!.uid,
             photoUrl: photoUrl,
-            gender: gender,
+            university: university,
             username: username,
             email: email,
             bio: bio,

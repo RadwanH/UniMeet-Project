@@ -1,7 +1,11 @@
 import 'dart:ui';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:unimeet101/resources/firestore_methods.dart';
+import 'package:unimeet101/utils/colors.dart';
 
 class CommentCard extends StatefulWidget {
   final snap;
@@ -69,9 +73,51 @@ class _CommentCardState extends State<CommentCard> {
           ),
           Container(
             padding: EdgeInsets.all(8),
-            child: const Icon(
-              Icons.favorite,
-              size: 16,
+            child: IconButton(
+              onPressed: () {
+                print(widget.snap['commentId']);
+
+                if (widget.snap['uid'] ==
+                    FirebaseAuth.instance.currentUser!.uid) {
+                  showDialog(
+                    context: context,
+                    builder: (context) => Dialog(
+                      child: ListView(
+                        padding: const EdgeInsets.symmetric(
+                          vertical: 16,
+                        ),
+                        shrinkWrap: true,
+                        children: [
+                          'Delete',
+                        ]
+                            .map(
+                              (e) => InkWell(
+                                onTap: () async {
+                                  print('delete func called');
+                                  FirestoreMethods()
+                                      .deleteComment(widget.snap['commentId']);
+
+                                  Navigator.of(context).pop();
+                                },
+                                child: Container(
+                                  padding: const EdgeInsets.symmetric(
+                                    vertical: 12,
+                                    horizontal: 16,
+                                  ),
+                                  child: Text(e),
+                                ),
+                              ),
+                            )
+                            .toList(),
+                      ),
+                    ),
+                  );
+                } else {}
+              },
+              icon: const Icon(
+                Icons.more_vert,
+                color: logoColor,
+              ),
             ),
           ),
         ],
