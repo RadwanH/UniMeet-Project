@@ -25,9 +25,8 @@ class _SignupScreenState extends State<SignupScreen> {
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _bioController = TextEditingController();
   final TextEditingController _usernameController = TextEditingController();
-  final TextEditingController _nameController = TextEditingController();
-  final TextEditingController _lastNameController = TextEditingController();
-  final TextEditingController _genderController = TextEditingController();
+  final TextEditingController _displsynameController = TextEditingController();
+  final TextEditingController _universityController = TextEditingController();
   Uint8List? _image;
   bool _isLoading = false;
 
@@ -38,9 +37,8 @@ class _SignupScreenState extends State<SignupScreen> {
     _passwordController.dispose();
     _bioController.dispose();
     _usernameController.dispose();
-    _nameController.dispose();
-    _lastNameController.dispose();
-    _genderController.dispose();
+    _displsynameController.dispose();
+    _universityController.dispose();
   }
 
   void selectImage() async {
@@ -55,9 +53,8 @@ class _SignupScreenState extends State<SignupScreen> {
       _isLoading = true;
     });
     String res = await AuthMethods().signUpUser(
-      name: _nameController.text,
-      lastName: _lastNameController.text,
-      gender: _genderController.text,
+      displsyname: _displsynameController.text,
+      university: _universityController.text,
       username: _usernameController.text,
       email: _emailController.text,
       password: _passwordController.text,
@@ -73,10 +70,7 @@ class _SignupScreenState extends State<SignupScreen> {
     } else {
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
-          builder: (context) => const ResponsiveLayout(
-            mobileScreenLayout: MobileScreenLayout(),
-            webScreenLayout: WebScreenLayout(),
-          ),
+          builder: (context) => const LoginScreen(),
         ),
       );
     }
@@ -144,7 +138,7 @@ class _SignupScreenState extends State<SignupScreen> {
                         child: Icon(Icons.badge),
                         //child: Icon(Icons.iconPic),
                       ),
-                      textEditingController: _nameController,
+                      textEditingController: _displsynameController,
                       hintText: "Your name",
                       textInputType: TextInputType.text),
 
@@ -153,29 +147,29 @@ class _SignupScreenState extends State<SignupScreen> {
                   ),
 
                   //text field input for Last name
-                  TextFieldInput(
-                      iconPic: const Padding(
-                        padding: EdgeInsets.all(16),
-                        child: Icon(Icons.badge),
-                        //child: Icon(Icons.iconPic),
-                      ),
-                      textEditingController: _lastNameController,
-                      hintText: "Enter your last name",
-                      textInputType: TextInputType.text),
+                  // TextFieldInput(
+                  //     iconPic: const Padding(
+                  //       padding: EdgeInsets.all(16),
+                  //       child: Icon(Icons.badge),
+                  //       //child: Icon(Icons.iconPic),
+                  //     ),
+                  //     textEditingController: _lastNameController,
+                  //     hintText: "Enter your last name",
+                  //     textInputType: TextInputType.text),
 
-                  const SizedBox(
-                    height: 24,
-                  ),
+                  // const SizedBox(
+                  //   height: 24,
+                  // ),
 
-                  //text field input for gender
+                  //text field input for university
                   TextFieldInput(
                     iconPic: const Padding(
                       padding: EdgeInsets.all(16),
-                      child: Icon(Icons.female),
+                      child: Icon(Icons.school),
                       //child: Icon(Icons.iconPic),
                     ),
-                    textEditingController: _genderController,
-                    hintText: "Enter gender",
+                    textEditingController: _universityController,
+                    hintText: "Enter your university",
                     textInputType: TextInputType.text,
                   ),
 

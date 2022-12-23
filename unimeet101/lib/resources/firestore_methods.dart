@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
 import 'package:unimeet101/models/post.dart';
 import 'package:unimeet101/resources/storage_methods.dart';
@@ -53,6 +54,7 @@ class FirestoreMethods {
     }
   }
 
+// posting comment to firebase
   Future<void> postComment(String postId, String text, String uid, String name,
       String profilePic) async {
     try {
@@ -87,6 +89,53 @@ class FirestoreMethods {
     } catch (e) {
       print(e.toString());
     }
+  }
+
+  //deleting the comment
+
+  Future<void> deleteComment(String commentId) async {
+    // print('here is the deleteComment method before delete');
+
+    // CollectionReference subcollection =
+    //     _firestore.collection('posts').doc(postId).collection('comments');
+
+    // DocumentReference commentTodelete = subcollection.doc(commentId);
+
+    // try {
+    //   commentTodelete.delete();
+    // } catch (e) {
+    //   print(e.toString());
+    // }
+
+    // try {
+    //   Reference ref =
+    //       FirebaseStorage.instance.ref().child('posts').child(postId);
+    //   ref.child('comments').child(commentId).delete();
+    // } catch (e) {
+    //   print(e.toString());
+    // }
+    print('here is the deleteComment method');
+
+    try {
+      print(commentId);
+      await _firestore.collection('comments').doc(commentId).delete().then(
+            (doc) => print("Document deleted"),
+            onError: (e) => print("Error updating document $e"),
+          );
+    } catch (e) {
+      print(e.toString());
+    }
+
+    // try {
+    //   await _firestore.collection('posts')
+    //   .doc('postId')
+    //   .collection('comments').ref
+    //   .where(field, '==', commentId)
+    //   .onSnapshot(snapshot => snapshot.foreEach(result => result.ref.delete()));
+
+    // } catch (e) {
+    //   print(e.toString());
+    // }
   }
 
   //following

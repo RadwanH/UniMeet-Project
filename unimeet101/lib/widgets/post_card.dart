@@ -127,48 +127,53 @@ class _PostCardState extends State<PostCard> {
                       ),
                     ),
                   ),
-                  IconButton(
-                    onPressed: () {
-                      if (widget.snap['uid'] ==
-                          FirebaseAuth.instance.currentUser!.uid) {
-                        showDialog(
-                          context: context,
-                          builder: (context) => Dialog(
-                            child: ListView(
-                              padding: const EdgeInsets.symmetric(
-                                vertical: 16,
-                              ),
-                              shrinkWrap: true,
-                              children: [
-                                'Delete',
-                              ]
-                                  .map(
-                                    (e) => InkWell(
-                                      onTap: () async {
-                                        FirestoreMethods()
-                                            .deletePost(widget.snap['postId']);
-                                        Navigator.of(context).pop();
-                                      },
-                                      child: Container(
-                                        padding: const EdgeInsets.symmetric(
-                                          vertical: 12,
-                                          horizontal: 16,
-                                        ),
-                                        child: Text(e),
+                  Container(
+                      child: (widget.snap['uid'] ==
+                              FirebaseAuth.instance.currentUser!.uid)
+                          ? IconButton(
+                              onPressed: () {
+                                // if (widget.snap['uid'] ==
+                                //     FirebaseAuth.instance.currentUser!.uid) {
+                                showDialog(
+                                  context: context,
+                                  builder: (context) => Dialog(
+                                    child: ListView(
+                                      padding: const EdgeInsets.symmetric(
+                                        vertical: 16,
                                       ),
+                                      shrinkWrap: true,
+                                      children: [
+                                        'Delete',
+                                      ]
+                                          .map(
+                                            (e) => InkWell(
+                                              onTap: () async {
+                                                FirestoreMethods().deletePost(
+                                                    widget.snap['postId']);
+                                                Navigator.of(context).pop();
+                                              },
+                                              child: Container(
+                                                padding:
+                                                    const EdgeInsets.symmetric(
+                                                  vertical: 12,
+                                                  horizontal: 16,
+                                                ),
+                                                child: Text(e),
+                                              ),
+                                            ),
+                                          )
+                                          .toList(),
                                     ),
-                                  )
-                                  .toList(),
-                            ),
-                          ),
-                        );
-                      } else {}
-                    },
-                    icon: const Icon(
-                      Icons.more_vert,
-                      color: logoColor,
-                    ),
-                  )
+                                  ),
+                                );
+                                //} else {}
+                              },
+                              icon: const Icon(
+                                Icons.more_vert,
+                                color: logoColor,
+                              ),
+                            )
+                          : null)
                 ],
               ),
             ),
