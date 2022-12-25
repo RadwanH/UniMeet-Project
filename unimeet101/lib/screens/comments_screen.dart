@@ -9,7 +9,8 @@ import 'package:unimeet101/widgets/comment_card.dart';
 
 class CommentsScreen extends StatefulWidget {
   final snap;
-  const CommentsScreen({super.key, required this.snap});
+  final String postId;
+  const CommentsScreen({super.key, required this.snap, required this.postId});
 
   @override
   State<CommentsScreen> createState() => _CommentsScreenState();
@@ -59,7 +60,8 @@ class _CommentsScreenState extends State<CommentsScreen> {
             return ListView.builder(
               itemCount: (snapshot.data! as dynamic).docs.length,
               itemBuilder: ((context, index) => CommentCard(
-                  snap: (snapshot.data! as dynamic).docs[index].data())),
+                  snap: (snapshot.data! as dynamic).docs[index].data(),
+                  postId: widget.snap['postId'])),
             );
           })),
       bottomNavigationBar: SafeArea(
@@ -92,7 +94,7 @@ class _CommentsScreenState extends State<CommentsScreen> {
                     widget.snap['postId'],
                     _commentController.text,
                     user.uid,
-                    user.displsyname,
+                    user.displayname,
                     user.photoUrl,
                   );
                   setState(() {

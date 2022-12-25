@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:unimeet101/resources/auth_methods.dart';
 import 'package:unimeet101/resources/firestore_methods.dart';
+import 'package:unimeet101/screens/edit_profile_screen.dart';
 import 'package:unimeet101/screens/login_screen.dart';
 import 'package:unimeet101/utils/colors.dart';
 import 'package:unimeet101/utils/utils.dart';
@@ -72,6 +73,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
     });
   }
 
+  void navigateToProfileEdit(BuildContext context) {
+    Navigator.of(context).pushReplacement(MaterialPageRoute(
+      builder: (context) =>
+          const EditProfileScreen(uid: 'ogoCrj8he4UWVLSv1zqiUbnzfWN2'),
+    ));
+  }
+
   @override
   Widget build(BuildContext context) {
     return isLoading
@@ -85,6 +93,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
               //   userData['username'],
               // ),
               centerTitle: false,
+              actions: [
+                TextButton(
+                  onPressed: () => navigateToProfileEdit(context),
+                  child: const Text('Edit Profile'),
+                ),
+              ],
             ),
             body: MediaQuery.of(context).size.width < webScreenSize
                 ? ListView(

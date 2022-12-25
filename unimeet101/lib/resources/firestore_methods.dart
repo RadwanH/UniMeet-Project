@@ -93,19 +93,19 @@ class FirestoreMethods {
 
   //deleting the comment
 
-  Future<void> deleteComment(String commentId) async {
-    // print('here is the deleteComment method before delete');
+  Future<void> deleteComment(String postId, String commentId) async {
+    print('here is the deleteComment method before delete');
 
-    // CollectionReference subcollection =
-    //     _firestore.collection('posts').doc(postId).collection('comments');
+    CollectionReference subcollection =
+        _firestore.collection('posts').doc(postId).collection('comments');
 
-    // DocumentReference commentTodelete = subcollection.doc(commentId);
+    DocumentReference commentTodelete = subcollection.doc(commentId);
 
-    // try {
-    //   commentTodelete.delete();
-    // } catch (e) {
-    //   print(e.toString());
-    // }
+    try {
+      commentTodelete.delete();
+    } catch (e) {
+      print(e.toString());
+    }
 
     // try {
     //   Reference ref =
@@ -116,15 +116,15 @@ class FirestoreMethods {
     // }
     print('here is the deleteComment method');
 
-    try {
-      print(commentId);
-      await _firestore.collection('comments').doc(commentId).delete().then(
-            (doc) => print("Document deleted"),
-            onError: (e) => print("Error updating document $e"),
-          );
-    } catch (e) {
-      print(e.toString());
-    }
+    // try {
+    //   print(commentId);
+    //   await _firestore.collection('comments').doc(commentId).delete().then(
+    //         (doc) => print("Document deleted"),
+    //         onError: (e) => print("Error updating document $e"),
+    //       );
+    // } catch (e) {
+    //   print(e.toString());
+    // }
 
     // try {
     //   await _firestore.collection('posts')

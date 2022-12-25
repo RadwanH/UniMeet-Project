@@ -132,6 +132,7 @@ class _PostCardState extends State<PostCard> {
                               FirebaseAuth.instance.currentUser!.uid)
                           ? IconButton(
                               onPressed: () {
+                                print(widget.snap['postId']);
                                 // if (widget.snap['uid'] ==
                                 //     FirebaseAuth.instance.currentUser!.uid) {
                                 showDialog(
@@ -278,7 +279,10 @@ class _PostCardState extends State<PostCard> {
                 IconButton(
                   onPressed: () => Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (context) => CommentsScreen(snap: widget.snap),
+                      builder: (context) => CommentsScreen(
+                        snap: widget.snap,
+                        postId: widget.snap['postId'],
+                      ),
                     ),
                   ),
                   icon: SvgPicture.asset(
@@ -351,11 +355,21 @@ class _PostCardState extends State<PostCard> {
                     onTap: () {},
                     child: Container(
                       padding: const EdgeInsets.symmetric(vertical: 4),
-                      child: Text(
-                        'view all ${commentLen} comments',
-                        style: const TextStyle(
-                          fontSize: 16,
-                          color: secondaryColor,
+                      child: InkWell(
+                        onTap: () => Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => CommentsScreen(
+                              snap: widget.snap,
+                              postId: widget.snap['postId'],
+                            ),
+                          ),
+                        ),
+                        child: Text(
+                          'view all ${commentLen} comments',
+                          style: const TextStyle(
+                            fontSize: 16,
+                            color: secondaryColor,
+                          ),
                         ),
                       ),
                     ),
