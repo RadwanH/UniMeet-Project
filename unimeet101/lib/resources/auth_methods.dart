@@ -22,7 +22,7 @@ class AuthMethods {
   // signup user
 
   Future<String> signUpUser({
-    required String displsyname,
+    required String displayname,
     required String university,
     required String username,
     required String email,
@@ -32,7 +32,7 @@ class AuthMethods {
   }) async {
     String res = "Some error occurred";
     try {
-      if (displsyname.isNotEmpty ||
+      if (displayname.isNotEmpty ||
           university.isNotEmpty ||
           username.isNotEmpty ||
           email.isNotEmpty ||
@@ -51,7 +51,7 @@ class AuthMethods {
         // add user to our database
 
         model.User user = model.User(
-            displsyname: displsyname,
+            displayname: displayname,
             uid: cred.user!.uid,
             photoUrl: photoUrl,
             university: university,
@@ -81,6 +81,64 @@ class AuthMethods {
 
     return res;
   }
+
+// Edit profile
+// Future<String> editProfile({
+//     required String displayname,
+//     required String email,
+//     required String password,
+//     required String bio,
+//     required Uint8List file,
+//   }) async {
+//     String res = "Some error occurred";
+//     try {
+//       if (displayname.isNotEmpty ||
+//           email.isNotEmpty ||
+//           password.isNotEmpty ||
+//           bio.isNotEmpty ||
+//           file != null) {
+//         //edit user data
+//         // UserCredential cred = await _auth.createUserWithEmailAndPassword (
+//         //     email: email, password: password);
+
+//         // print(cred.user!.uid);
+
+//         String photoUrl = await StorageMethods()
+//             .uploadImageToStorage('profilePics', file, false);
+
+//         // add user to our database
+
+//         model.User user = model.User(
+//             displayname: displayname,
+//             uid: cred.user!.uid,
+//             photoUrl: photoUrl,
+//             university: university,
+//             username: username,
+//             email: email,
+//             bio: bio,
+//             followers: [],
+//             following: []);
+
+//         await _firestore.collection('users').doc(cred.user!.uid).set(
+//               user.toJason(),
+//             );
+
+//         res = 'success';
+//       }
+//     } on FirebaseAuthException catch (err) {
+//       if (err.code == 'invalid-email') {
+//         res = 'The email format is invalid';
+//       } else if (err.code == 'weak-password') {
+//         res = 'Password should be at least 6 characters long';
+//       } else if (err.code == 'email-already-in-use') {
+//         res = 'Email already in use';
+//       }
+//     } catch (err) {
+//       res = err.toString();
+//     }
+
+//     return res;
+//   }
 
   //logging in user
 

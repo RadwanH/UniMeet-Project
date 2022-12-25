@@ -25,7 +25,7 @@ class _SignupScreenState extends State<SignupScreen> {
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _bioController = TextEditingController();
   final TextEditingController _usernameController = TextEditingController();
-  final TextEditingController _displsynameController = TextEditingController();
+  final TextEditingController _displaynameController = TextEditingController();
   final TextEditingController _universityController = TextEditingController();
   Uint8List? _image;
   bool _isLoading = false;
@@ -37,7 +37,7 @@ class _SignupScreenState extends State<SignupScreen> {
     _passwordController.dispose();
     _bioController.dispose();
     _usernameController.dispose();
-    _displsynameController.dispose();
+    _displaynameController.dispose();
     _universityController.dispose();
   }
 
@@ -53,7 +53,7 @@ class _SignupScreenState extends State<SignupScreen> {
       _isLoading = true;
     });
     String res = await AuthMethods().signUpUser(
-      displsyname: _displsynameController.text,
+      displayname: _displaynameController.text,
       university: _universityController.text,
       username: _usernameController.text,
       email: _emailController.text,
@@ -138,7 +138,7 @@ class _SignupScreenState extends State<SignupScreen> {
                         child: Icon(Icons.badge),
                         //child: Icon(Icons.iconPic),
                       ),
-                      textEditingController: _displsynameController,
+                      textEditingController: _displaynameController,
                       hintText: "Your name",
                       textInputType: TextInputType.text),
 
