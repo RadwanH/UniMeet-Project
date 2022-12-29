@@ -106,36 +106,6 @@ class FirestoreMethods {
     } catch (e) {
       print(e.toString());
     }
-
-    // try {
-    //   Reference ref =
-    //       FirebaseStorage.instance.ref().child('posts').child(postId);
-    //   ref.child('comments').child(commentId).delete();
-    // } catch (e) {
-    //   print(e.toString());
-    // }
-    print('here is the deleteComment method');
-
-    // try {
-    //   print(commentId);
-    //   await _firestore.collection('comments').doc(commentId).delete().then(
-    //         (doc) => print("Document deleted"),
-    //         onError: (e) => print("Error updating document $e"),
-    //       );
-    // } catch (e) {
-    //   print(e.toString());
-    // }
-
-    // try {
-    //   await _firestore.collection('posts')
-    //   .doc('postId')
-    //   .collection('comments').ref
-    //   .where(field, '==', commentId)
-    //   .onSnapshot(snapshot => snapshot.foreEach(result => result.ref.delete()));
-
-    // } catch (e) {
-    //   print(e.toString());
-    // }
   }
 
   //following
