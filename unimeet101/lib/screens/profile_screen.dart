@@ -89,9 +89,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
         : Scaffold(
             appBar: AppBar(
               backgroundColor: mobileBackgroundColor,
-              // title: Text(
-              //   userData['username'],
-              // ),
+              title: Text(
+                userData['username'],
+              ),
               centerTitle: false,
               actions: [
                 TextButton(
@@ -206,16 +206,32 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               alignment: Alignment.bottomLeft,
                               padding: const EdgeInsets.only(top: 15),
                               child: Text(
-                                userData['username'],
+                                userData['displayname'],
                                 style: const TextStyle(
                                   fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                  fontSize: 20,
+                                ),
+                              ),
+                            ),
+                            Container(
+                              alignment: Alignment.bottomLeft,
+                              padding: const EdgeInsets.only(top: 15),
+                              child: Text(
+                                userData['university'].toUpperCase(),
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white30,
+                                  fontSize: 20,
+                                  fontStyle: FontStyle.italic,
+                                  wordSpacing: 16,
                                 ),
                               ),
                             ),
                             Container(
                               alignment: Alignment.bottomLeft,
                               padding: const EdgeInsets.only(
-                                top: 1,
+                                top: 16,
                               ),
                               child: Text(
                                 userData['bio'],
@@ -394,16 +410,32 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   alignment: Alignment.bottomLeft,
                                   padding: const EdgeInsets.only(top: 15),
                                   child: Text(
-                                    userData['username'],
+                                    userData['displayname'],
                                     style: const TextStyle(
                                       fontWeight: FontWeight.bold,
+                                      color: Colors.white,
+                                      fontSize: 20,
+                                    ),
+                                  ),
+                                ),
+                                Container(
+                                  alignment: Alignment.bottomLeft,
+                                  padding: const EdgeInsets.only(top: 15),
+                                  child: Text(
+                                    userData['university'].toUpperCase(),
+                                    style: const TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white30,
+                                      fontSize: 20,
+                                      fontStyle: FontStyle.italic,
+                                      wordSpacing: 16,
                                     ),
                                   ),
                                 ),
                                 Container(
                                   alignment: Alignment.bottomLeft,
                                   padding: const EdgeInsets.only(
-                                    top: 1,
+                                    top: 16,
                                   ),
                                   child: Text(
                                     userData['bio'],
