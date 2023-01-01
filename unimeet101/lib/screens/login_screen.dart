@@ -122,32 +122,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   const SizedBox(
                     height: 24,
                   ),
-                  // button login
-
-                  // InkWell(
-                  //   onTap: loginUser,
-                  //   child: Container(
-                  //     width: double.infinity,
-                  //     alignment: Alignment.center,
-                  //     padding: const EdgeInsets.symmetric(
-                  //       vertical: 12,
-                  //     ),
-                  //     decoration: const ShapeDecoration(
-                  //         shape: RoundedRectangleBorder(
-                  //           borderRadius: BorderRadius.all(
-                  //             Radius.circular(4),
-                  //           ),
-                  //         ),
-                  //         color: blueColor),
-                  //     child: _isLoading
-                  //         ? const Center(
-                  //             child: CircularProgressIndicator(
-                  //               color: primaryColor,
-                  //             ),
-                  //           )
-                  //         : const Text('Log in'),
-                  //   ),
-                  // ),
                   ElevatedButton(
                     onPressed: loginUser,
                     child: Container(
