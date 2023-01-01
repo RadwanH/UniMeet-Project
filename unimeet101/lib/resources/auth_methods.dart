@@ -43,7 +43,7 @@ class AuthMethods {
         UserCredential cred = await _auth.createUserWithEmailAndPassword(
             email: email, password: password);
 
-        print(cred.user!.uid);
+        // print(cred.user!.uid);
 
         String photoUrl = await StorageMethods()
             .uploadImageToStorage('profilePics', file, false);
@@ -83,62 +83,41 @@ class AuthMethods {
   }
 
 // Edit profile
-// Future<String> editProfile({
-//     required String displayname,
-//     required String email,
-//     required String password,
-//     required String bio,
-//     required Uint8List file,
-//   }) async {
-//     String res = "Some error occurred";
-//     try {
-//       if (displayname.isNotEmpty ||
-//           email.isNotEmpty ||
-//           password.isNotEmpty ||
-//           bio.isNotEmpty ||
-//           file != null) {
-//         //edit user data
-//         // UserCredential cred = await _auth.createUserWithEmailAndPassword (
-//         //     email: email, password: password);
+  Future<String> editProfile({
+    required String uid,
+    required String displayname,
+    required String bio,
+    required String university,
+    required Uint8List file,
+  }) async {
+    String res = "Some error occurred";
+    try {
+      if (displayname.isNotEmpty || bio.isNotEmpty || university.isNotEmpty) {
+        String photoUrl = await StorageMethods()
+            .uploadImageToStorage('profilePics', file, false);
 
-//         // print(cred.user!.uid);
+        //edit user data
 
-//         String photoUrl = await StorageMethods()
-//             .uploadImageToStorage('profilePics', file, false);
+        var updateData = {
+          'displayname': displayname,
+          'bio': bio,
+          'university': university,
+          'photoUrl': photoUrl
+        };
 
-//         // add user to our database
+        _firestore.collection('users').doc(uid).update(updateData);
 
-//         model.User user = model.User(
-//             displayname: displayname,
-//             uid: cred.user!.uid,
-//             photoUrl: photoUrl,
-//             university: university,
-//             username: username,
-//             email: email,
-//             bio: bio,
-//             followers: [],
-//             following: []);
+        res = 'profile updated successfully';
+        print(res);
+      }
+    } on FirebaseAuthException catch (err) {
+      res = err.toString();
+    } catch (err) {
+      res = err.toString();
+    }
 
-//         await _firestore.collection('users').doc(cred.user!.uid).set(
-//               user.toJason(),
-//             );
-
-//         res = 'success';
-//       }
-//     } on FirebaseAuthException catch (err) {
-//       if (err.code == 'invalid-email') {
-//         res = 'The email format is invalid';
-//       } else if (err.code == 'weak-password') {
-//         res = 'Password should be at least 6 characters long';
-//       } else if (err.code == 'email-already-in-use') {
-//         res = 'Email already in use';
-//       }
-//     } catch (err) {
-//       res = err.toString();
-//     }
-
-//     return res;
-//   }
+    return res;
+  }
 
   //logging in user
 
