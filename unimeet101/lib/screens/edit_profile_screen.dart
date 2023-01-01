@@ -10,10 +10,13 @@ import 'package:unimeet101/utils/utils.dart';
 import 'package:unimeet101/widgets/text_field_input.dart';
 
 class EditProfileScreen extends StatefulWidget {
-  final String uid;
+  final Map userDataa;
+  // final String displayname;
+  // final String bio;
+  // final String university;
   const EditProfileScreen({
     super.key,
-    required this.uid,
+    required this.userDataa,
   });
 
   @override
@@ -21,47 +24,36 @@ class EditProfileScreen extends StatefulWidget {
 }
 
 class _EditProfileScreenState extends State<EditProfileScreen> {
+  TextEditingController _bioController = TextEditingController();
+  TextEditingController _displaynameController = TextEditingController();
+  TextEditingController _universityController = TextEditingController();
+
   Uint8List? _image;
-  bool isLoading = false;
+  bool _isLoading = false;
+  String imageUrl = "";
+
   var userData = {};
-  late TextEditingController displaynameController;
 
   @override
   void initState() {
     super.initState();
-    getData();
-    displaynameController = TextEditingController(
-      text: userData['displayname'],
-    );
-  }
+    print(imageUrl);
+    userData = widget.userDataa;
+    //var username = userData['displayname'];
 
-  getData() async {
-    setState(() {
-      isLoading = true;
-    });
-    try {
-      var userSnap = await FirebaseFirestore.instance
-          .collection('users')
-          .doc(widget.uid)
-          .get();
-      userData = userSnap.data()!;
-
-      setState(() {});
-    } catch (e) {
-      showSnackBar(
-        e.toString(),
-        context,
-      );
-    }
-    setState(() {
-      isLoading = false;
-    });
+    _displaynameController.text = userData['displayname'];
+    _bioController.text = userData['bio'];
+    _universityController.text = userData['university'];
+    imageUrl = userData['photoUrl']!;
+    //print(imageUrl);
   }
 
   @override
   void dispose() {
     super.dispose();
-    displaynameController.dispose();
+    // _bioController.dispose();
+    // _displaynameController.dispose();
+    // _universityController.dispose();
   }
 
   void selectImage() async {
@@ -73,8 +65,23 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
 
   void editProfile() async {
     setState(() {
-      isLoading = true;
+      _isLoading = true;
     });
+
+    String res = await AuthMethods().editProfile(
+      displayname: _displaynameController.text,
+      university: _universityController.text,
+      bio: _bioController.text,
+      file: _image!,
+      uid: userData['uid'],
+    );
+
+    setState(
+      () {
+        _isLoading = false;
+      },
+    );
+    showSnackBar(res, context);
   }
 
   @override
@@ -82,15 +89,14 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     return Scaffold(
       backgroundColor: mobileBackgroundColor,
       appBar: AppBar(
+        leading: IconButton(
+            icon: Icon(Icons.arrow_back, color: Colors.white),
+            onPressed: () {
+              Navigator.of(context).pop();
+            }),
         backgroundColor: mobileBackgroundColor,
         title: const Text('Edit Profile'),
-        actions: [
-          TextButton(
-            onPressed: () {},
-            child: const Text('Save'),
-          ),
-        ],
-        centerTitle: false,
+        centerTitle: true,
       ),
       body: SafeArea(
         child: Container(
@@ -113,10 +119,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                               radius: 64,
                               backgroundImage: MemoryImage(_image!),
                             )
-                          : const CircleAvatar(
+                          : CircleAvatar(
                               radius: 64,
-                              backgroundImage:
-                                  AssetImage('assets/images/defaultProf.png'),
+                              backgroundImage: NetworkImage(imageUrl),
                             ),
                       Positioned(
                         bottom: -10,
@@ -133,54 +138,63 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   ),
 
                   //text field input for name
-                  TextField(
-                    controller: displaynameController,
-                    decoration: InputDecoration(
-                      filled: true,
-                      hintText: 'Display Name',
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: const BorderSide(color: Colors.blue),
-                        borderRadius: BorderRadius.circular(10),
+                  TextFieldInput(
+                      iconPic: const Padding(
+                        padding: EdgeInsets.all(16),
+                        child: Icon(Icons.badge),
                       ),
-                      border: InputBorder.none,
-                      contentPadding: const EdgeInsets.all(18),
+                      textEditingController: _displaynameController,
+                      hintText: "Your name",
+                      textInputType: TextInputType.text),
+                  const SizedBox(
+                    height: 30,
+                  ),
+
+                  //text field input for name
+                  TextFieldInput(
+                      iconPic: const Padding(
+                        padding: EdgeInsets.all(16),
+                        child: Icon(Icons.badge),
+                      ),
+                      textEditingController: _bioController,
+                      hintText: "Your bio",
+                      textInputType: TextInputType.text),
+                  const SizedBox(
+                    height: 30,
+                  ),
+
+                  //text field input for name
+                  TextFieldInput(
+                      iconPic: const Padding(
+                        padding: EdgeInsets.all(16),
+                        child: Icon(Icons.badge),
+                      ),
+                      textEditingController: _universityController,
+                      hintText: "Your university",
+                      textInputType: TextInputType.text),
+                  const SizedBox(
+                    height: 30,
+                  ),
+
+                  ElevatedButton(
+                    onPressed: editProfile,
+                    child: Container(
+                      width: double.infinity,
+                      alignment: Alignment.center,
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 12,
+                      ),
+                      child: _isLoading
+                          ? const Center(
+                              child: CircularProgressIndicator(
+                                color: primaryColor,
+                              ),
+                            )
+                          : const Text(
+                              'Save',
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
                     ),
-                  ),
-
-                  const SizedBox(
-                    height: 24,
-                  ),
-
-                  TextFormField(),
-
-                  const SizedBox(
-                    height: 24,
-                  ),
-
-                  //text field input for username
-                  TextFormField(),
-
-                  const SizedBox(
-                    height: 24,
-                  ),
-                  // user bio
-                  TextFormField(),
-
-                  const SizedBox(
-                    height: 24,
-                  ),
-
-                  //text field input for email
-                  TextFormField(),
-
-                  const SizedBox(
-                    height: 24,
-                  ),
-
-                  // password field
-                  TextFormField(),
-                  const SizedBox(
-                    height: 24,
                   ),
                 ],
               ),

@@ -73,12 +73,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
     });
   }
 
-  void navigateToProfileEdit(BuildContext context) {
-    Navigator.of(context).pushReplacement(MaterialPageRoute(
-      builder: (context) =>
-          const EditProfileScreen(uid: 'ogoCrj8he4UWVLSv1zqiUbnzfWN2'),
-    ));
-  }
+  // void navigateToProfileEdit(BuildContext context) {
+  //   Navigator.of(context).pushReplacement(MaterialPageRoute(
+  //     builder: (context) =>
+  //         const EditProfileScreen(uid: 'ogoCrj8he4UWVLSv1zqiUbnzfWN2'),
+  //   ));
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -95,7 +95,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
               centerTitle: false,
               actions: [
                 TextButton(
-                  onPressed: () => navigateToProfileEdit(context),
+                  onPressed: () {
+                    print(userData['uid']);
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => EditProfileScreen(
+                          userDataa: userData,
+                        ),
+                      ),
+                    );
+                  },
                   child: const Text('Edit Profile'),
                 ),
               ],
